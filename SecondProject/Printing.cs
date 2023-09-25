@@ -1,4 +1,5 @@
-﻿namespace SecondProject;
+﻿namespace SecondProject;//Namespace is the name of project
+//it is also called Assembly
 public class Printing
 {
     public static void FunctionA()
@@ -18,4 +19,9 @@ public class Printing
         Console.Write("Nass");
         Console.Write("Technologies");
     }
+}
+
+public class Printing1
+{
+
 }

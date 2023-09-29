@@ -31,16 +31,36 @@ public class CH02_DataTypes
         ///101  5
         ///110  6
         ///111  7
+        ///If i want to have both signs (+ & -) then divide the capacity into two
+        ///for three bits the capacity is 8. for two signs it should be divided by two
+        ///for - : 8/2 = 4 (i.e. -4,-3,-2,-1)
+        ///for + : 8/2 = 4 (i.e. 3,2,1,0)
+        ///therefore capacity will be expressed as (-4 to 3)
+        ///This type is called SIGNED because it has both signs (+ & -)
+        ///and the type which has only one sign (i.e. +) is called UNSIGNED
         ///Decimal = 2^(binary bits)
         ///2^3 = 8
         ///2^4 = 16
-        ///2^8 = 256 (8bit)
-        ///00000000 = 0
-        ///Homework: 16 bit, 32 bit, 64 bit
+        ///Unsigned byte/Byte Type : 2^8 = 256 (8bit)
+        ///Signed byte Type        : 2^8 = 256/2 = 128 (-128 to 127)
+        ///Unsigned short/Int16 Type : 2^16 = 65536
+        ///Signed Short Type         : 2^16 = 65536/2 = (-32768 to 32767)
+        ///Unsigned int/Int32 Type : 2^32 = 4294967296
+        ///Signed int Type         : 2^32 = 4294967296/2 = (-2147483648 to 2147483647)
+        ///Unsigned long/Int64 Type : 2^64 = 18446744073709551616
+        ///Signed long              : 2^64 = 18446744073709551616/2 = (-9223372036854775808 to 9223372036854775807)
+        ///Unsigned Int128 2^128 = 340282366920938463463374607431768211456
+        ///Signed Int128 2^128/2 = (-170141183460469231731687303715884105728 to 170141183460469231731687303715884105727)
+
+
     }
     public static void IntegerDataType()
     {
-        ///Integer Data Types contains numbers like
-        ///1, 30, 400, 0, -34, -5000
+        Byte ub = 255;
+        SByte b = -128; b = 127;
+        UInt16 ui = 65535;
+        Int16 i = -32768; i = 32767;
+        //Homework: write variables with max capacity for following types: int32, int 64, int128
+
     }
 }

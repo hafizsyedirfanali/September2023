@@ -57,10 +57,21 @@ public class CH02_DataTypes
     public static void IntegerDataType()
     {
         Byte ub = 255;
+        byte ubbyte = 255;
         SByte b = -128; b = 127;
-        UInt16 ui = 65535;
-        Int16 i = -32768; i = 32767;
+        
+        UInt16 ui16 = 65535;//short
+        ushort ui16short = 65535;
+        Int16 i16 = -32768; i16 = 32767;
         //Homework: write variables with max capacity for following types: int32, int 64, int128
+        UInt32 ui32 = 4294967295;
+        uint ui32int = 4294967295;
+        Int32 si32 = -2147483648; si32 = 2147483647;
+        UInt64 ui64 = 18446744073709551615;
+        ulong ui64long = 18446744073709551615;
+        Int64 si64 = -9223372036854775808; si64 = 9223372036854775807;
+        //UInt128 ui128 = 340282366920938463463374607431768211455;
+        //Int128 si128 = -170141183460469231731687303715884105728; b = 170141183460469231731687303715884105727;
 
     }
 }

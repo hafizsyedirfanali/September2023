@@ -9,7 +9,7 @@ public class Printing
         Console.WriteLine("Enter your surname");
         string surname = Console.ReadLine();
 
-        Console.WriteLine(name);
+        Console.WriteLine(name+surname);
 
         string sentence = "Hello world from Second Project";
 

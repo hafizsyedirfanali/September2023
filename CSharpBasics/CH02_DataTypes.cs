@@ -6,6 +6,8 @@
 /// 2. real/floating (signed & unsigned)
 /// 3. character
 /// 4. boolean
+/// These are called VALUED Data Type
+/// We have another datatype called REFERENCED Data Type
 /// </summary>
 public class CH02_DataTypes
 {
@@ -56,7 +58,8 @@ public class CH02_DataTypes
     }
     public static void IntegerDataType()
     {
-        Byte ub = 255;
+        Byte ub = 255; 
+        ub = 1;
         byte ubbyte = 255;
         SByte b = -128; b = 127;
         
@@ -73,5 +76,27 @@ public class CH02_DataTypes
         //UInt128 ui128 = 340282366920938463463374607431768211455;
         //Int128 si128 = -170141183460469231731687303715884105728; b = 170141183460469231731687303715884105727;
 
+    }
+    public static void FloatingDataType()
+    {
+        //We have three data types in this category float, double and decimal
+        //1. float 4bytes
+        float f = 1.1f;//in float a number 1.1 to be appended by f
+        //2. double 8bytes
+        double d = 1.1d;//in double a number 1.1 may be appended by d
+        double d1 = 1.1;
+        //3. decimal 16bytes
+        decimal m = 1.1m;//in decimal a number 1.1 to be appended by m
+    }
+    public static void CharacterDataType()
+    {
+        //This data type is used to store a character from the list of ASCII characters
+        char c = '1';//here 1 as a char will be saved as decimal 49. Refer chart
+    }
+    public static void BooleanDataType()
+    {
+        //
+        Boolean b = true;
+        bool b1 = false;
     }
 }

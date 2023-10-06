@@ -6,7 +6,8 @@
 /// 2. real/floating (signed & unsigned)
 /// 3. character
 /// 4. boolean
-/// These are called VALUED Data Type
+/// These are called VALUED Data Type.
+/// These are stored in Stack memory and are removed at the end of scope '}'
 /// We have another datatype called REFERENCED Data Type
 /// </summary>
 public class CH02_DataTypes
@@ -96,7 +97,18 @@ public class CH02_DataTypes
     public static void BooleanDataType()
     {
         //
-        Boolean b = true;
-        bool b1 = false;
+        Boolean b = true;//It will be saved as 1
+        bool b1 = false;//It will be saved as 0
+    }
+
+    public static void ReferencedDataType()
+    {
+        //String data type : Array of Character 
+        // if i want to save a sentence "hello from .net class"
+        string s = "hello from .net class";
+        string greet = "Hello";
+        //there are some more referenced data types other than string
+        //for example Class object, interfaces, etc
     }
 }
+

@@ -109,6 +109,9 @@ public class CH02_DataTypes
         string greet = "Hello";
         //there are some more referenced data types other than string
         //for example Class object, interfaces, etc
+        CH02_DataTypes ch02;//ch02 is a reference variable holding null value
+        //We will learn the how to add data to class which will be stored in heap
+        //in OOPS
     }
 }
 

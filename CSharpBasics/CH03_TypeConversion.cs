@@ -5,6 +5,7 @@
 /// automatically.)
 /// 2. Explicit - Manual (the conversion that has a chance of any loss are not converted 
 /// automatically and needs to be converted manually)
+/// 3. Using Convert Class
 /// </summary>
 public class CH03_TypeConversion
 {
@@ -53,5 +54,56 @@ public class CH03_TypeConversion
         i = 97;//be careful while conversion as number beyond capacity will give unpredictable results
         char c = (char)i;
         Console.WriteLine($"int {i} is converted into char {c}");
+        //byte byte1 = 1;
+        //bool b2 = (bool)byte1;
+        //for boolean conversion we have to use Convert class
+
+    }
+    public static void ConversionUsingConvertClass()
+    {
+        string str = "";
+
+        //To Integer
+        //1) to Byte
+        str = "1";
+        byte by = Convert.ToByte(str);
+        //2) to short
+        short s = Convert.ToInt16(str);
+        //3) to int
+        int i = Convert.ToInt32(str);
+        //4) to long
+        long l = Convert.ToInt64(str);
+        //5) to Int128
+        //Int128 int128 = Convert.ToInt128("str");//not yet ready from Microsoft
+
+        //To Floating/fractional numbers
+        str = "1.2";
+        float f = Convert.ToSingle(str);//float
+        double d = Convert.ToDouble(str);
+        decimal m = Convert.ToDecimal(str);
+
+        //To Character
+        str = "a";
+        char c = Convert.ToChar(str);
+
+        //To Boolean
+        //from string to bool
+        str = "true";
+        bool b = Convert.ToBoolean(str);
+        //from int to bool
+        i = 10;
+        b = Convert.ToBoolean(i);
+    }
+    public static void ConvertUsingParse()
+    {
+        string str = "";
+        //To Integer
+        str = "12";
+        byte b = byte.Parse(str);
+        //To Floating
+
+        //To Char
+
+        //To boolean
     }
 }

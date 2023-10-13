@@ -80,7 +80,7 @@ public class CH02_DataTypes
     }
     public static void FloatingDataType()
     {
-        //We have three data types in this category float, double and decimal
+        //We have three data types in this category float(Single), double(Double) and decimal(Decimal)
         //1. float 4bytes
         float f = 1.1f;//in float a number 1.1 to be appended by f
         //2. double 8bytes

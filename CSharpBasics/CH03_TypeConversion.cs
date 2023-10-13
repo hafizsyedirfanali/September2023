@@ -106,4 +106,5 @@ public class CH03_TypeConversion
 
         //To boolean
     }
+    //Next is tryparse
 }

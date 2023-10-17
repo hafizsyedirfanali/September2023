@@ -6,12 +6,14 @@
 /// 2. Explicit - Manual (the conversion that has a chance of any loss are not converted 
 /// automatically and needs to be converted manually)
 /// 3. Using Convert Class
+/// 4. Using Parse Method
+/// 5. Using TryParse Method (BEST) - Incomplete
 /// </summary>
 public class CH03_TypeConversion
 {
     public static void Test()
     {
-        ExplicitConversion();
+        ConversionUsingConvertClass();
     }
     public static void ImplicitConversion()
     {
@@ -96,15 +98,31 @@ public class CH03_TypeConversion
     }
     public static void ConvertUsingParse()
     {
+        ///Parse Method will convert the valid input otherwise it will
+        ///throw an exception (error)
         string str = "";
         //To Integer
         str = "12";
         byte b = byte.Parse(str);
+        short s = short.Parse(str);
+        int i = int.Parse(str);
+        long l = long.Parse(str);
+        Int128 int128 = Int128.Parse(str);
         //To Floating
-
+        float f = float.Parse(str);
+        Double d = double.Parse(str);
+        Decimal m = Decimal.Parse(str);
         //To Char
-
+        str = "1";
+        char c = char.Parse(str);
         //To boolean
+        str = "TRUE";
+        bool bl = bool.Parse(str);
     }
     //Next is tryparse
+    public static void ConvertUsingTryParse()
+    {
+        ///Before studying TryParse you must know If-Else and 
+        ///Call by Reference using out
+    }
 }

@@ -7,12 +7,37 @@
 /// 4. Trimming
 /// 5. Equals Method is used to compare two strings and returns boolean value
 /// 6. Upper case and Lower case
+/// 7. Joins will be covered in Linq and SQL
+/// 8. Properties of string
+/// 9. Replace
 /// </summary>
 public class CH01_StringManipulation
 {
     public static void Test()
     {
-        UpperLowerCases();
+        GetHashCode();//Function call
+    }
+    public static void GetHashCode()
+    {
+        string str = "hello";
+        int hashCode = str.GetHashCode();
+        Console.WriteLine(hashCode);
+        str = "world";
+        hashCode = str.GetHashCode();
+        Console.WriteLine(hashCode);
+
+    }
+    public static void Replace()
+    {
+        string str = "Hello  World Hello  World Hello  World Hello  World Hello  World Hello  World Hello  World Hello  World Hello  World Hello  World Hello  World Hello  World ";
+        string str1 = str.Replace("  "," ");
+        Console.WriteLine(str1);
+    }
+    public static void StringProperties()
+    {
+        string str = "Hello world";
+        int lengthOfString = str.Length;
+        Console.WriteLine("Length of string is {0}",lengthOfString);
     }
     public static void Concatenation()
     {

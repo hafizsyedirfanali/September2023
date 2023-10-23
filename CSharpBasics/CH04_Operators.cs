@@ -24,8 +24,8 @@ public class CH04_Operators
         int age = 10;//here = is assignment operator which assign value from Right to Left
         //for performing arithmtic operation with assignment
         //for example age = age + 1
-        age += 1;//age = age + 1
-        age -= 1;//age = age - 1
+        age += 1;//age = age + 1 :: Increment
+        age -= 1;//age = age - 1 :: Decrement
         age *= 2; //age = age * 2;
         //age = age /(divide by) 3 and result is quotient
         age = 20;//if age is 20 then quotient will be 6

@@ -129,5 +129,6 @@ public class CH01_StringManipulation
         char[] ch = new char[] { '.' };
         Console.WriteLine($"Position of . after 11 characters is {str.IndexOfAny(ch,11)}");
     }
+    
 }
 

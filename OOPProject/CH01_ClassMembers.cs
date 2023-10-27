@@ -44,6 +44,12 @@ public class CH01_ClassMembers
     {
 
     }
+    //Structure
+    public struct NestedStruct
+    {
+
+    }
+
     //Destructor
     ~CH01_ClassMembers()
     {

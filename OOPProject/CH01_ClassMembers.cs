@@ -35,7 +35,14 @@ public class CH01_ClassMembers
         Name = "Irfan Ali";
         Gender = "Male";
     }
-
+    public void SetValue()
+    {
+        Name = "Irfan";
+    }
+    public void PrintValue()
+    {
+        Console.WriteLine(Name);
+    }
     //Fields
     private int count = 10;
 
@@ -54,5 +61,57 @@ public class CH01_ClassMembers
     ~CH01_ClassMembers()
     {
 
+    }
+}
+
+public class Visitor
+{
+    public Visitor()
+    {
+        Counter = 10;
+    }
+    public int Counter { get; set; }
+    public void Increment()
+    {
+        Counter += 1;
+    }
+    public void Decrement()
+    {
+        Counter -= 1;
+    }
+}
+
+///Task1:
+///Calculator
+///Properties- Num1, Num2, Result
+///Method - Add, Substract, Multiply, Divide (quotient), PrintResult
+///Task2:Messenger 
+///properties - Message
+///Methods - SetMessage & PrintMessage
+/// 
+public class Calculator
+{
+    public int Num1 { get; set; }
+    public int Num2 { get; set; }
+    public int Result { get; set; }
+    public void Add()
+    {
+        Result = Num1 + Num2;
+    }
+    public void Subtract()
+    {
+        Result = Num1 - Num2;
+    }
+    public void Multiply()
+    {
+        Result = Num1 * Num2;
+    }
+    public void Divide()
+    {
+        Result = Num1 / Num2;
+    }
+    public void PrintResult()
+    {
+        Console.WriteLine(Result);
     }
 }

@@ -89,6 +89,22 @@ public class Visitor
 ///properties - Message
 ///Methods - SetMessage & PrintMessage
 /// 
+public class Messenger
+{
+    public Messenger()
+    {
+        
+    }
+    public string Message { get; set; }
+    public void SetMessage()
+    {
+        Message = "Hello world";
+    }
+    public void PrintMessage()
+    {
+        Console.WriteLine(Message);
+    }
+}
 public class Calculator
 {
     public int Num1 { get; set; }

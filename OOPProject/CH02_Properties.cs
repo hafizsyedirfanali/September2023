@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace OOPProject
 {
+    /// <summary>
+    /// prop is code snippet for property
+    /// </summary>
     public class CH02_Properties
     {
         public void Test()

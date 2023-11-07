@@ -1,5 +1,9 @@
 ﻿namespace OOPProject;
-
+/// <summary>
+/// A Function/Method is collection of instructions, which are executed when 
+/// the function is called.
+/// All the executable instructions must be placed within function.
+/// </summary>
 public class CH05_Methods
 {
     public void Test()

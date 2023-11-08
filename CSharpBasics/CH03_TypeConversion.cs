@@ -13,7 +13,7 @@ public class CH03_TypeConversion
 {
     public static void Test()
     {
-        ConversionUsingConvertClass();
+        ConvertUsingParse();
     }
     public static void ImplicitConversion()
     {
@@ -122,7 +122,14 @@ public class CH03_TypeConversion
     //Next is tryparse
     public static void ConvertUsingTryParse()
     {
+        //Try parse is used to avoid runtime exceptions
         ///Before studying TryParse you must know If-Else and 
         ///Call by Reference using out
+        string s = "ten";
+       
+        bool isConverted = int.TryParse(s, out int i);
+        Console.WriteLine($"Value in i is {i}");
+
+        //conversion of other types is similar
     }
 }

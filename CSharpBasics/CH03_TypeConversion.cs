@@ -126,8 +126,8 @@ public class CH03_TypeConversion
         ///Before studying TryParse you must know If-Else and 
         ///Call by Reference using out
         string s = "ten";
-       
-        bool isConverted = int.TryParse(s, out int i);
+        int i;
+        bool isConverted = int.TryParse(s, out i);
         Console.WriteLine($"Value in i is {i}");
 
         //conversion of other types is similar

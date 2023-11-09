@@ -3,6 +3,10 @@
 /// A method can be called by passing a value or a reference.
 /// where a reference is an address of a variable or object.
 /// the variable that holds the address is called reference variable or reference object.
+/// we have three keywords for calling with reference i.e. 'in', 'out', and 'ref'.
+/// 1. 'in' keyword specifies that the called function can only read the value from reference. With this passed reference variable must be assigned value before calling.
+/// 2. 'out' keyword specifies that the called function must write the value to the reference. With this passed reference variable may or may not be assigned value before calling.
+/// 3. 'ref' keyword specifies that the called function can read the value from and write the value to the reference.With this passed reference variable must be assigned value before calling.
 /// </summary>
 public class CH07_CallByReference
 {
@@ -13,6 +17,13 @@ public class CH07_CallByReference
 
         AddByReference(in a, in b, out result);//This call will send address of a, b & result variables
         SubtractByReference(ref a, ref b, ref result);
+        int a1;
+        a1 = 1;
+        AddByReference(in a1, in b, out int result1);
+
+        int b1;
+        b1 = 1;
+        SubtractByReference(ref a, ref b1, ref result);
     }
     public int AddByValue(int a, int b)//This is an example of call by value
     {

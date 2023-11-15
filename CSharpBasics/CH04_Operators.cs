@@ -94,6 +94,20 @@ public class CH04_Operators
         Console.WriteLine("NOT Operation");
         Console.WriteLine($"not of True is {!true}");
         Console.WriteLine($"not of False is {!false}");
+        //Less than
+        Console.WriteLine("Enter marks");
+        int marks = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine(marks < 35);
+        //Less than and equal to 
+        Console.WriteLine(marks <= 35);
+        //Greater than
+        Console.WriteLine(marks > 35);
+        //Greater than and equal to 
+        Console.WriteLine(marks >= 35);
+        //equal to
+        Console.WriteLine(marks == 35);
+        //not equal to
+        Console.WriteLine(marks != 35);
     }
     public static void ArithmaticOperators()
     {

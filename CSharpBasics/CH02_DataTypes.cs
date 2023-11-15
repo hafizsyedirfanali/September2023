@@ -6,6 +6,7 @@
 /// 2. real/floating (signed & unsigned)
 /// 3. character
 /// 4. boolean
+/// 5. Nullables
 /// These are called VALUED Data Type.
 /// These are stored in Stack memory and are removed at the end of scope '}'
 /// We have another datatype called REFERENCED Data Type
@@ -112,6 +113,20 @@ public class CH02_DataTypes
         CH02_DataTypes ch02;//ch02 is a reference variable holding null value
         //We will learn the how to add data to class which will be stored in heap
         //in OOPS
+    }
+    public void TestNullables()
+    {
+        //There are two types of variables 1) Valued 2) Referenced
+        //Valued variables store 0 when unassigned whereas Referenced variables contains null if not assigned.
+        //To make clear if we want to store null we mark the datatype by ?
+        //e.g. int?   float?  string?
+        int? age = null;//Nullable literal
+        //int a = null;//Non Nullable literal
+
+        string? firstName = null;//nullable literal
+        string lastName = null;//non nullable literal
+        //in older version of c# referenced datatypes were nullables
+        //but from .net 5 onwards referenced datatypes must be marked by ? to declare them nullables
     }
 }
 

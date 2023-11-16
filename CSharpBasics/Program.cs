@@ -1,5 +1,5 @@
 ﻿//Code always executes in Program.cs
 using CSharpBasics;
 
-CH05_ConditionalStatements obj = new ();
+CH06_Loops obj = new ();
 obj.Test();

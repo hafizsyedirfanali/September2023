@@ -3,6 +3,7 @@
 /// A Function/Method is collection of instructions, which are executed when 
 /// the function is called.
 /// All the executable instructions must be placed within function.
+/// DRY is a principle in coding. it means Don't Repeat Yourself
 /// </summary>
 public class CH05_Methods
 {

@@ -20,4 +20,5 @@ public class CH07_Arrays
     {
         char[] chars = new char[] { 's', 'u', 'b', 'o', 'o', 'r' };
     }
+    //whats new in .net7, 8
 }

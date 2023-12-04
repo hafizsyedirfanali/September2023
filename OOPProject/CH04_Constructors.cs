@@ -13,6 +13,10 @@
     /// called as default constructor. A default constructor is parameterless
     /// 6. we can override the default constructor.
     /// 7. we can overload the class constructors with different signatures.
+    /// 8. The instance created using constructor is called as 
+    /// (i) an instance of the class,
+    /// (ii) an object of the class or class object,
+    /// (iii) a reference variable of the class
     /// </summary>
     public class CH04_Constructors
     {

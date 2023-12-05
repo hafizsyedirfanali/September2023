@@ -19,6 +19,7 @@ public class CH07_CallByReference
         TestReferenceVariable2();
        // TestReferenceKeywords();
     }
+
     public void TestRefernceVariable()
     {
         Student student = new Student();
@@ -36,6 +37,12 @@ public class CH07_CallByReference
         Console.WriteLine($"Student Id is {student2.Id}");
         Console.WriteLine($"Student Name is {student2.Name}");
         Console.WriteLine($"Student Address is {student2.Address}");
+    }
+    public void TestReferenceVariable3()
+    {
+        Student student = new Student();
+        int id = 10; string name = "suboor"; string address = "Nagpur";
+        AddDataToStudent(student, in id, in name, in address);
     }
     public void TestReferenceKeywords()
     {
@@ -96,4 +103,10 @@ public class CH07_CallByReference
     }
     //Task create a method AddDataToStudent and pass Student object, id, name, address to it
     //add this data to student object
-}
+    public void AddDataToStudent(Student std,in int id, in string name, in string address)
+    {
+        std.Id = id;
+        std.Name = name;
+        std.Address = address;
+    }
+}   

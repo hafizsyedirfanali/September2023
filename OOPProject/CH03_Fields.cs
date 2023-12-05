@@ -8,6 +8,7 @@ namespace OOPProject
 {
     /// <summary>
     /// The Name of Fields are to be either lowerCamelCase or with _UpperCamelCase
+    /// Fields are always kept private
     /// </summary>
     public class CH03_Fields
     {

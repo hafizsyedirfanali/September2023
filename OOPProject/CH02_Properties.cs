@@ -8,6 +8,7 @@ namespace OOPProject
 {
     /// <summary>
     /// prop is code snippet for property
+    /// properties are kept public for access
     /// </summary>
     public class CH02_Properties
     {

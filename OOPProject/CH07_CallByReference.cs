@@ -16,7 +16,7 @@ public class CH07_CallByReference
 {
     public void Test()
     {
-        TestReferenceVariable2();
+        TestReferenceVariable3();
        // TestReferenceKeywords();
     }
 

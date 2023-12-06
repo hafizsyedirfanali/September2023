@@ -128,5 +128,22 @@ public class CH02_DataTypes
         //in older version of c# referenced datatypes were nullables
         //but from .net 5 onwards referenced datatypes must be marked by ? to declare them nullables
     }
+
+    public void VarDataType()
+    {
+        var i = 10;
+        var c = 'c';
+        var b = (byte)10;
+        var str = "hello";
+        var chapter = new CH02_DataTypes();
+    }
+    public void ObjectDataType()
+    {
+
+    }
+    public void DynamicDataType()
+    {
+
+    }
 }
 

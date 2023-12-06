@@ -1,7 +1,10 @@
 ﻿namespace OOPProject //Name of Project / Assembly
 {
     /// <summary>
-    /// ACCESS MODIFIERS
+    /// Encapsulation is a fundamental concept in object-oriented programming 
+    /// that describes bundling data and methods within one unit, like a class.
+    /// We use ACCESS MODIFIERS for controlling the access/encapsulation. 
+    /// for hiding we make the data private and to expose we make it public
     /// </summary>
     public class CH08_Encapsulation// Class / TYPE  //this type is accessed in program.cs of csharpbasic assembly
     {
@@ -15,8 +18,8 @@
         {
             ///A class within a class (TYPE) can be either public or internal or private or protected
             ///public - accessible everywhere
-            ///internal - accessible within same assembly
             ///private - accessible within a class where it is defined.
+            ///internal - accessible within same assembly
             ///protected - will study after inheritance 
             ///
             int i = 100;//if access modifier is not specified then it is private by default.

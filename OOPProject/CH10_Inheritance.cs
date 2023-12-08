@@ -32,7 +32,7 @@ public class CH10_Inheritance
     }
     public class DerivedClass : BaseClass
     {
-
+        //All the members of base class will be inherited here
     }
 
     public class TypesOfInheritance
@@ -131,4 +131,5 @@ public class CH10_Inheritance
             }
         }
     }
+
 }

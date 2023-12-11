@@ -1,5 +1,5 @@
 ﻿using OOPProject;
 
 
-CH11_Polymorphism obj = new ();
+CH12_Overriding obj = new ();
 obj.Test();

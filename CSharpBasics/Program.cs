@@ -2,7 +2,7 @@
 using CSharpBasics;
 using OOPProject;
 
-CH08_MenuDrivenProgram obj = new ();
+CH07_Arrays.JaggedArray obj = new ();
 obj.Test();
 
 

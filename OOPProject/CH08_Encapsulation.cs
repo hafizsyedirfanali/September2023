@@ -38,6 +38,28 @@
             {
 
             }
+
+            public class D
+            {
+                protected void ProtectedFunction()
+                {
+                    Console.WriteLine("I am protected by Class D");
+                }
+                private void Test()
+                {
+                    ProtectedFunction();
+                }
+            }
+            public class E : D
+            {
+                public void Test()
+                {
+                    E obj = new E();
+                    obj.ProtectedFunction();
+                    //A protected function can be assessed by instance of 
+                    //its child class
+                }
+            }
         }
         public void Test()
         {
@@ -47,6 +69,10 @@
             innerClass.Name = "test";
             InnerClass.A a = new InnerClass.A();
             //InnerClass.B b = new InnerClass.B();//Inaccessible (private)
+
+            InnerClass.D d = new InnerClass.D();
+            //d.ProtectedFunction();
+
         }
     }
 }

@@ -27,6 +27,7 @@ public class CH16_Generics
         public T GenericProperty2 { get; set; }
         public T GenericProperty3 { get; set; }
         public T GenericProperty4 { get; set; }
+        //we can use the type T in all the other members
     }
     public class Teacher<T1,T2,T3>//T1, T2 and T3 are generic parameters that expect type
     {

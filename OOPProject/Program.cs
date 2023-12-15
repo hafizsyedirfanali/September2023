@@ -1,5 +1,5 @@
 ﻿using OOPProject;
 
 
-CH12_Overriding obj = new ();
+CH17_LambdaFunction obj = new ();
 obj.Test();

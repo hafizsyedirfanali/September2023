@@ -2,7 +2,7 @@
 using CSharpBasics;
 using OOPProject;
 
-CH07_Arrays.JaggedArray obj = new ();
+CH07_Arrays.ThreeDimensionArray obj = new ();
 obj.Test();
 
 

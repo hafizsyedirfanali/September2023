@@ -116,4 +116,42 @@ public class CH07_Arrays
             }
         }
     }
+    public class FourDimensionArray
+    {
+        public void Test()
+        {
+            int index = 0;
+            int[,,,] matrix4d = new int[4, 4, 4, 4];
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    for (int k = 0; k < 4; k++)
+                    {
+                        for (int l = 0; l < 4; l++)
+                        {
+                            matrix4d[i, j, k, l] = index++;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    for (int k = 0; k < 4; k++)
+                    {
+                        for (int l = 0; l < 4; l++)
+                        {
+                            Console.Write(matrix4d[i, j, k, l]+"  ");
+                        }
+                        Console.WriteLine("");
+                    }
+                    Console.WriteLine("-------------");
+                }
+                Console.WriteLine("=================");
+            }
+        }
+    }
 }

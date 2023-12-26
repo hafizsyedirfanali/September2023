@@ -1,4 +1,8 @@
 ﻿{
+  //In a .net application we have two servers
+  //1. Kestral Server (http/https) - Cross Platform (Windows/Linux/others)
+  //2. IIS Express Server (IIS Express) (Windows ONLY)
+  //When we say something to server then it is called request and when server says something to us it is called response.
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,

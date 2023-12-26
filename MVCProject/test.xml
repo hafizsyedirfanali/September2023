@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Student>
+	<Age>10</Age>
+	<Gender>Male</Gender>
+	<Academic>
+		<RollNo>3</RollNo>
+		<Attendance>70</Attendance>
+		<IsEligible>True</IsEligible>
+	</Academic>
+</Student>

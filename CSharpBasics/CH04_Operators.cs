@@ -10,6 +10,7 @@
 /// </summary>
 public class CH04_Operators
 {
+
     public static void Test()
     {
         ShiftOperators();

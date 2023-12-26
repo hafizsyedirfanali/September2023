@@ -1,0 +1,11 @@
+{
+  "Student": {
+    "Age": 10,
+    "Gender": "Male",
+    "Academic": {
+      "RollNo": 3,
+      "Attendance": 70,
+      "IsEligible": true
+    }
+  }
+}

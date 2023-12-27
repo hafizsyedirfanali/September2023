@@ -20,6 +20,8 @@
       "applicationUrl": "http://localhost:5282",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
+        //Development,Production,Staging,S1,S2,S3,Alpha,Beta,
+        //we can add more custom environments
       }
     },
     "https": {

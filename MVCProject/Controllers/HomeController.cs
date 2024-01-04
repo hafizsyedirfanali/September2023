@@ -15,12 +15,27 @@ namespace MVCProject.Controllers
 
         public IActionResult Index()
         {
+            //return NotFound();
             return View();
         }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult MyName()
+        {
+            return Content("My Name is Irfan Sir");
+        }
+        public IActionResult GiveServerError()
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+        public IActionResult GiveNotFoundError()
+        {
+            //return NotFound();
+            return StatusCode(StatusCodes.Status404NotFound);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

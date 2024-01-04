@@ -41,6 +41,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+    //this is a development environment and it will show detailed errors
 }
 else
 {
@@ -48,14 +49,14 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+//Middlewares
+app.UseHttpsRedirection();//it redirects to Https from Http
 
-app.UseHttpsRedirection();
+app.UseStaticFiles();//It enables use of files using url
 
-app.UseStaticFiles();
+app.UseRouting();//Endpoint / Path
 
-app.UseRouting();
-
-app.UseAuthentication();
+app.UseAuthentication();//It is a login process
 
 app.UseAuthorization();
 

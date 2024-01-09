@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCProject.Models;
 using System.Diagnostics;
@@ -12,7 +13,6 @@ namespace MVCProject.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             //return NotFound();

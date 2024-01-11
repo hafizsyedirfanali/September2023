@@ -1,0 +1,18 @@
+﻿@{
+    int i = 10;
+    var data = ViewBag.Teacher;
+    var id = data.Id;
+    id++;
+    var name = data.Name;
+}
+
+
+@(i == 10? "Yes":"No")
+<div class="text-center">
+    <h1 class="display-1">Date is @ViewBag.Date</h1>
+    <h1 class="display-1">Name is @ViewData["Name"]</h1>
+</div>
+<div class="text-center">
+    <h1 class="display-1">Teacher Id is @id</h1>
+    <h1 class="display-1">Teacher Name is @name</h1>
+</div>

@@ -7,11 +7,15 @@ namespace MVCProject.Controllers
         /// <summary>
         /// ViewData or ViewBag adds an item in a data dictionary, whose scope encloses the view.
         /// this dictionary item is available within the action and its view only.
+        /// 
+        /// TempData is a storage to store data temporarily (volatile) in sessions on server.
+        /// Once data is red from the variable/key, it is marked for deletion, which is then deleted by GC.
         /// </summary>
         /// <returns></returns>
         public IActionResult ViewDataAction()
         {
             ViewData["WelcomeText"] = "Hello from Irfan Sir. Its cold today";
+
             return View();
         }
         public IActionResult ViewBagAction()
@@ -32,6 +36,20 @@ namespace MVCProject.Controllers
                 Name = "Irfan"
             };
             ViewBag.Teacher = teacher;
+            return View();
+        }
+
+        public IActionResult TempDataAction()
+        {
+            TempData["MyName"] = "Irfan Sir";
+            return View();
+        }
+        public IActionResult TempDataAction1()
+        {
+            if (TempData.ContainsKey("MyName"))
+            {
+
+            }
             return View();
         }
     }

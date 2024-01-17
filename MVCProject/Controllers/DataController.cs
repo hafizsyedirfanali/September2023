@@ -42,6 +42,7 @@ namespace MVCProject.Controllers
         public IActionResult TempDataAction()
         {
             TempData["MyName"] = "Irfan Sir";
+            TempData["Course"] = ".Net";
             return View();
         }
         public IActionResult TempDataAction1()
@@ -50,6 +51,12 @@ namespace MVCProject.Controllers
             {
 
             }
+            var isSuccess = TempData.TryGetValue("MyName", out object? value);//This will try to read the key's value
+            if (isSuccess)
+            {
+                //Do some operation on value object
+            }
+            //If a complex data is assigned to TempData or ViewData then parsing is required before reading.
             return View();
         }
     }

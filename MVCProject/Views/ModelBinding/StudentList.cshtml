@@ -1,0 +1,13 @@
+﻿@model List<MVCProject.Models.Student>
+
+@{
+    var firstStudent = Model.First();
+    var name = firstStudent.Name;
+    var email = firstStudent.Email;
+
+}
+<div class="text-center">
+    <h1 class="display-1">First Student Name is @name</h1>
+    <h1 class="display-1">First Student Email is @email</h1>
+
+</div>

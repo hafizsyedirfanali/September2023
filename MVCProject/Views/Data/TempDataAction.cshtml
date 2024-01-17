@@ -1,3 +1,14 @@
-﻿<div class="text-center">
-    <h1 class="display-1">Teacher Name is </h1>
+﻿@{
+    var name = TempData["MyName"];
+    //Now to keep the data for next reading, call Keep Method
+    TempData.Keep("MyName");
+
+    var course = TempData.Peek("Course");//Only read without deleting
+    //The key name is not case sensitive
+}
+
+<div class="text-center">
+    <h1 class="display-1">Teacher Name is @name</h1>
+    <h1 class="display-1">Course is @course</h1>
+
 </div>

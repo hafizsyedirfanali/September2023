@@ -15,8 +15,11 @@ namespace MVCProject.Controllers
     public class ModelBindingController : Controller
     {
         /// <summary>
-        /// HTML has actions like get, post, put, patch, delete.
+        /// HTML has actions like get (READ), post (CREATE), put (UPDATE & Replace), patch (UPDATE & Modify), delete (DELETE).
         /// for each action we must have Action in Controller
+        /// 
+        /// In our project we will perform Create, Update & Delete operations using only "POST" HTTP verb
+        /// and to Read we will use "GET" verb.
         /// </summary>
         /// <returns></returns>
         /// 
@@ -32,6 +35,49 @@ namespace MVCProject.Controllers
                 new Student() { Id = 4, Name = "eee", Email = "e@a.com", Phone = "444" }
             };
             return View(model);
+        }
+
+        //[HttpGet]
+        //public IActionResult StudentDetail()
+        //{
+        //    var student = new Student()
+        //    {
+        //        Id = 1,
+        //        Name = "abcd",
+        //        Email = "a@a.com",
+        //        Phone = "111"
+        //    };
+        //    return View(student);
+        //}
+
+        [HttpGet]
+        public IActionResult StudentDetail(int? id)
+        {
+            var model = new List<Student>()
+            {
+                new Student() { Id = 1, Name = "abcd", Email = "a@a.com", Phone = "111" },
+                new Student() { Id = 2, Name = "qqq", Email = "q@a.com", Phone = "222" },
+                new Student() { Id = 3, Name = "www", Email = "w@a.com", Phone = "333" },
+                new Student() { Id = 4, Name = "eee", Email = "e@a.com", Phone = "444" }
+            };
+            Student? student;
+            if(id is null)
+            {
+                student = new Student()
+                {
+                    Id = 1,
+                    Name = "abcd",
+                    Email = "a@a.com",
+                    Phone = "111"
+                };
+            }
+            else
+            {
+                student = model.Where(s => s.Id == id).FirstOrDefault();
+
+            }
+            
+            return View(student);
         }
         
     }    

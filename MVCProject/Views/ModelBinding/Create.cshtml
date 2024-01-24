@@ -1,0 +1,43 @@
+﻿@model CreateStudentViewModel
+
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+
+            <table class="table table-borderless table-warning">
+                <tr>
+                    <td>Student Id</td>
+                    <td>
+                        <input asp-for="Id"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Student name</td>
+                    <td>
+                        <input asp-for="Name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <input asp-for="Email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>
+                        <input asp-for="Phone" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</form>

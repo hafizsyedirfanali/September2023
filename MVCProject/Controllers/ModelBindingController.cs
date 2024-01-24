@@ -66,7 +66,7 @@ namespace MVCProject.Controllers
                 student = new Student()
                 {
                     Id = 1,
-                    Name = "abcd",
+                    Name = "temp",
                     Email = "a@a.com",
                     Phone = "111"
                 };
@@ -74,11 +74,24 @@ namespace MVCProject.Controllers
             else
             {
                 student = model.Where(s => s.Id == id).FirstOrDefault();
+                //FirstOrDefault is used to get the first record from collection. Its default value is null.
+                //and if no record found, it will return default value i.e. null without exception (error).
 
             }
             
             return View(student);
         }
-        
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateStudentViewModel model)
+        {
+            return View(model);
+        }
     }    
 }

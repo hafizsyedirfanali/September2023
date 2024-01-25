@@ -91,6 +91,28 @@ namespace MVCProject.Controllers
         [HttpPost]
         public IActionResult Create(CreateStudentViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+
+            }
+            ModelState.AddModelError("", "This is additional error message");
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult CreateBSValidation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateBSValidation(CreateStudentViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            ModelState.AddModelError("", "This is additional error message");
             return View(model);
         }
     }    

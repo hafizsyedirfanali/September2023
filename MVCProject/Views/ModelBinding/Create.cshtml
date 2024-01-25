@@ -2,42 +2,27 @@
 
 
 <form method="post">
-    <div class="row">
-        <div class="col-md-3 col-sm-6">
-
-            <table class="table table-borderless table-warning">
-                <tr>
-                    <td>Student Id</td>
-                    <td>
-                        <input asp-for="Id"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Student name</td>
-                    <td>
-                        <input asp-for="Name" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>
-                        <input asp-for="Email" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Phone</td>
-                    <td>
-                        <input asp-for="Phone" />
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button type="submit">Submit</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
+    <div class="mb-3">
+        <label asp-for="Id" class="form-label"></label>
+        <input asp-for="Id" class="form-control">
+        <span asp-validation-for=Id class="form-text text-danger"></span>
     </div>
-
+    <div class="mb-3">
+        <label asp-for=Name class="form-label"></label>
+        <input asp-for=Name class="form-control">
+        <span asp-validation-for=Name class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=Email class="form-label"></label>
+        <input asp-for=Email class="form-control">
+        <span asp-validation-for=Email class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=Phone class="form-label"></label>
+        <input asp-for=Phone class="form-control">
+        <span asp-validation-for=Phone class="form-text text-danger"></span>
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div asp-validation-summary="All" class="text-danger"></div>
 </form>

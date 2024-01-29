@@ -89,11 +89,12 @@ namespace MVCProject.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(CreateStudentViewModel model)
         {
             if (ModelState.IsValid)
             {
-
+                //
             }
             ModelState.AddModelError("", "This is additional error message");
             return View(model);
@@ -114,6 +115,19 @@ namespace MVCProject.Controllers
             }
             ModelState.AddModelError("", "This is additional error message");
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult CreateStudentList()
+        {
+            List<CreateStudentViewModel> students = new List<CreateStudentViewModel>
+            {
+                new CreateStudentViewModel(),
+                new CreateStudentViewModel(),
+                new CreateStudentViewModel(),
+                new CreateStudentViewModel(),
+            };
+            return View(students);
         }
     }    
 }

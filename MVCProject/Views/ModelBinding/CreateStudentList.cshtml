@@ -1,0 +1,36 @@
+﻿@model List<CreateStudentViewModel>
+@{
+}
+<form method="post">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var student in Model)
+            {
+                <tr>
+                    <td>
+                        <input asp-for="@student.Id" />
+                    </td>
+                    <td>
+                        <input asp-for="@student.Name" />
+                    </td>
+                    <td>
+                        <input asp-for="@student.Email" />
+                    </td>
+                    <td>
+                        <input asp-for="@student.Phone" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit">Submit</button>
+    <div asp-validation-summary="All" class="text-danger"></div>
+</form>

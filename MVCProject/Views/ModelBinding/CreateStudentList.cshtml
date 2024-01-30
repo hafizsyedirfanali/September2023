@@ -12,20 +12,24 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var student in Model)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Never use foreach loop for posting list of records
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @for (int i = 0; i < Model.Count; i++)
             {
                 <tr>
                     <td>
-                        <input asp-for="@student.Id" />
+                        <input asp-for="@Model[i].Id" />
                     </td>
                     <td>
-                        <input asp-for="@student.Name" />
+                        <input asp-for="@Model[i].Name" />
                     </td>
                     <td>
-                        <input asp-for="@student.Email" />
+                        <input asp-for="@Model[i].Email" />
                     </td>
                     <td>
-                        <input asp-for="@student.Phone" />
+                        <input asp-for="@Model[i].Phone" />
                     </td>
                 </tr>
             }

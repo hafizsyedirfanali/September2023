@@ -129,5 +129,14 @@ namespace MVCProject.Controllers
             };
             return View(students);
         }
+        [HttpPost][ValidateAntiForgeryToken]
+        public IActionResult CreateStudentList(List<CreateStudentViewModel> model)
+        {
+            if(ModelState.IsValid)
+            {
+
+            }
+            return View(model);
+        }
     }    
 }

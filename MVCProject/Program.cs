@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MVCProject.Data;
+using MVCProject.Interfaces;
+using MVCProject.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +35,22 @@ builder.Services.AddAuthorization();
 
 
 builder.Services.AddMvc();
+
+//Service Lifetime can be controlled using three different methods:
+//1. Singleton Service: a single instance will response all the requests
+//Lifetime of singleton is till END of program.
+//builder.Services.AddSingleton<IStudent, StudentRepository>();
+//2. Scoped Service: a single instance will response all
+//the request arising within its scope,
+//and for each scope a new instance is created.
+//Lifetime of such service is limited till end of scope.
+//builder.Services.AddScoped<IStudent, StudentRepository>();
+//3. Transient Service:a seperate instance will be created for each request.
+//Lifetime of such service is limited till execution of that request.
+//builder.Services.AddTransient<IStudent, StudentRepository>();
+
+
+
 
 var app = builder.Build();
 

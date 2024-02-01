@@ -61,5 +61,19 @@ namespace MVCProject.Repositories
                 Phone = student.Phone ?? string.Empty
             });
         }
+
+        public void SaveStudents(List<CreateStudentViewModel> students)
+        {
+            foreach (var student in students)
+            {
+                studentList.Add(new Student
+                {
+                    Id =student.Id,
+                    Name = student.Name,
+                    Email = student.Email ?? string.Empty,
+                    Phone = student.Phone ?? string.Empty
+                });
+            }
+        }
     }
 }

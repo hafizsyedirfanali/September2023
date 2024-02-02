@@ -1,0 +1,40 @@
+﻿@model List<CreateStudentViewModel>
+@{
+}
+<form method="post">
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Never use foreach loop for posting list of records
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input asp-for="@Model[i].Id" />
+                    </td>
+                    <td>
+                        <input asp-for="@Model[i].Name" />
+                    </td>
+                    <td>
+                        <input asp-for="@Model[i].Email" />
+                    </td>
+                    <td>
+                        <input asp-for="@Model[i].Phone" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit">Submit</button>
+    <div asp-validation-summary="All" class="text-danger"></div>
+</form>

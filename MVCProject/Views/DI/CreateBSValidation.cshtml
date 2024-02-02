@@ -1,0 +1,58 @@
+﻿@model CreateStudentViewModel
+
+
+<form method="post" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label asp-for="Id" class="form-label"></label>
+        <input asp-for="Id" class="form-control" required>
+        <div class="invalid-feedback">
+            Id is required - By Bootstrap
+        </div>
+        <span asp-validation-for="Id" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=Name class="form-label"></label>
+        <input asp-for=Name class="form-control" required>
+        <div class="invalid-feedback">
+            Name is required - By Bootstrap
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for=Email class="form-label"></label>
+        <input asp-for=Email class="form-control">
+        <span asp-validation-for=Email class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=Phone class="form-label"></label>
+        <input asp-for=Phone class="form-control">
+        <span asp-validation-for=Phone class="form-text text-danger"></span>
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div asp-validation-summary="All" class="text-danger"></div>
+</form>
+
+@section Scripts{
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+}

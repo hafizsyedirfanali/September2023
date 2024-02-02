@@ -1,0 +1,21 @@
+1. Recap of Basics
+4. View Components
+5. Areas
+6. Authentication and Authorization
+8. Entity Framework Core
+12. Web API Integration
+13. Error Handling
+14. Testing
+15. Logging
+16. Configuration
+17. Globalization and Localization
+18. Deployment
+19. Security Best Practices
+20. Performance Optimization
+--------------------------------------------
+2. Dependency Injection
+3. Tag Helpers
+7. Middleware
+9. Validation
+11. View Models
+10. Partial Views

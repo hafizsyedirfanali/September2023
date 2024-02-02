@@ -58,6 +58,7 @@ namespace MVCProject.Controllers
             if (ModelState.IsValid)
             {
                 studentService.SaveStudent(model);
+                return RedirectToAction(nameof(StudentList));
             }
             ModelState.AddModelError("", "This is additional error message");
             return View(model);

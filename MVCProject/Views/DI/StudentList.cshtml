@@ -1,0 +1,43 @@
+﻿@inject IStudent studentService
+@model List<CreateStudentViewModel>
+
+@{
+   
+}
+<div>
+    <a asp-asp-controller="DI" asp-action="Create" class="btn btn-primary">Add Student</a>
+</div>
+<partial name="_StudentSummaryPartial" model="Model" />
+<div class="text-center">
+    
+    <h1 class="display-3">Student List (Count = @studentService.GetStudentList().Count)</h1>
+    @if(Model is not null && Model.Count > 0)
+    {
+        <table class="table table-bordered table-success">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Student Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Id</td>
+                        <td>@student.Name</td>
+                        <td>@student.Email</td>
+                        <td>@student.Phone</td>
+                    </tr>
+                }
+               
+            </tbody>          
+        </table>
+    }
+    else
+    {
+        <h3>No record found</h3>
+    }
+</div>

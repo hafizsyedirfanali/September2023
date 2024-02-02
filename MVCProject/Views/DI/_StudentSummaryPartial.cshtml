@@ -1,0 +1,19 @@
+﻿@model List<CreateStudentViewModel>
+@{
+    var studentList = Model.Select(s => s.Name).ToList();
+    var studentNames = string.Join(',', studentList);
+}
+
+<div>
+    <p>
+        @studentNames
+    </p>
+</div>
+<div>
+    <ul>
+        @foreach (var item in studentList)
+        {
+            <li>@item</li>
+        }
+    </ul>
+</div>

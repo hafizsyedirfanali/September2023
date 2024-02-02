@@ -1,0 +1,37 @@
+﻿@model Student
+
+@{
+
+}
+
+@if(Model is not null)
+{
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+
+            <table class="table table-borderless table-warning">
+                <tr>
+                    <td>Student Id</td>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <td>Student name</td>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>@Model.Phone</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+}
+else
+{
+    <h1>No record found</h1>
+}

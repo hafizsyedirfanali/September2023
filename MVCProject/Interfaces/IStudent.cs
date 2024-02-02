@@ -1,6 +1,6 @@
 ﻿namespace MVCProject.Interfaces
 {
-    public interface IStudent
+    public interface IStudent//Services
     {
         List<CreateStudentViewModel> GetStudentList();
         CreateStudentViewModel? GetStudentById(int id);

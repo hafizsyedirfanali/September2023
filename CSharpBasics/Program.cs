@@ -2,11 +2,14 @@
 using CSharpBasics;
 using OOPProject;
 
-CH07_Arrays.FourDimensionArray obj = new ();
+CH09_GUID obj = new CH09_GUID();
 obj.Test();
+
+//CH07_Arrays.FourDimensionArray obj = new ();
+//obj.Test();
 
 
 /// Accessing Type of OOP assembly
 /// 
 
-CH08_Encapsulation enc = new CH08_Encapsulation();
+//CH08_Encapsulation enc = new CH08_Encapsulation();

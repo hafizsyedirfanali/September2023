@@ -1,0 +1,15 @@
+How to apply migration?
+1. Open Package Manager Console
+2. Execute this command to CREATE NEW MIGRATION
+   Add-Migration <migrationname> -context <dbcontextName> -OutputDir <MigrationFoldername>
+   example-
+   Add-Migration StudentTableAdded -context ApplicationDbContext -OutputDir Data/Migrations
+3. Execute Command to APPLY MIGRATION
+   Update-Database -context <dbcontextname>
+   example-
+   Update-Database -context ApplicationDbContext
+4. To remove a migration that has not been applied. This will remove the recent migration
+   Remove-Migration
+5. To remove a migration that is already APPLIED.
+	i. Update-Database <nameofpreviousmigration>
+	ii. Remove-Migration

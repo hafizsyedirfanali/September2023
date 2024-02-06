@@ -17,21 +17,21 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
-    //options.SignIn.RequireConfirmedAccount = true;
-    //options.SignIn.RequireConfirmedPhoneNumber = true;
-    //options.Password.RequiredLength = 3;
-    //options.Password.RequireNonAlphanumeric = false;
-    //options.Password.RequireDigit = false;
-    //options.Password.RequireLowercase = false;
-    //options.Password.RequireUppercase = false;
-    //options.Password.RequiredUniqueChars = 0;
-    //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(1);
-    //options.Lockout.MaxFailedAccessAttempts = 3;
-    //options.Lockout.AllowedForNewUsers = false;
+    options.SignIn.RequireConfirmedAccount = true;//Confirm Email
+    options.SignIn.RequireConfirmedPhoneNumber = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredUniqueChars = 1;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(1);
+    options.Lockout.MaxFailedAccessAttempts = 3;
+    options.Lockout.AllowedForNewUsers = true;
 }).AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddAuthentication();
-builder.Services.AddAuthorization();
+builder.Services.AddAuthentication();//Enables login system
+builder.Services.AddAuthorization();//Enables classification of users
 
 
 builder.Services.AddMvc();
@@ -76,7 +76,7 @@ app.UseRouting();//Endpoint / Path
 
 app.UseAuthentication();//It is a login process
 
-app.UseAuthorization();
+app.UseAuthorization();// its for classification of user
 
 app.MapControllerRoute(
     name: "default",

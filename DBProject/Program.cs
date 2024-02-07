@@ -1,4 +1,6 @@
 using DBProject.Data;
+using DBProject.Interfaces;
+using DBProject.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
+builder.Services.AddTransient<IStudent, StudentRepository>();
+//builder.Services.AddKeyedTransient<IStudent, StudentRepository1>("Key1");
+//builder.Services.AddKeyedTransient<IStudent, StudentRepository2>("Key2");
+//This keyed services can ease switching between development and production env.
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

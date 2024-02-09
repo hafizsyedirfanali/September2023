@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DBProject.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DBProject.Data;
 
 namespace DBProject.Controllers
 {
+    /// <summary>
+    /// This controller has data access layer and business logic layer
+    /// </summary>
     public class StudentsController : Controller
     {
         private readonly ApplicationDbContext _context;

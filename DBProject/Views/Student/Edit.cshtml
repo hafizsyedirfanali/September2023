@@ -1,0 +1,37 @@
+﻿@model StudentViewModel
+
+<form method="post">
+    <input hidden asp-for="Id" /> @* If we forget this line, then edit will not work *@
+    <div class="mb-3">
+        <label asp-for=Name class="form-label"></label>
+        <input asp-for=Name class="form-control">
+        <span asp-validation-for=Name class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=Address class="form-label"></label>
+        <input asp-for=Address class="form-control">
+        <span asp-validation-for=Address class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=City class="form-label"></label>
+        <input asp-for=City class="form-control">
+        <span asp-validation-for=City class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=Region class="form-label"></label>
+        <input asp-for=Region class="form-control">
+        <span asp-validation-for=Region class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=PostalCode class="form-label"></label>
+        <input asp-for=PostalCode class="form-control">
+        <span asp-validation-for=PostalCode class="form-text text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for=Country class="form-label"></label>
+        <input asp-for=Country class="form-control">
+        <span asp-validation-for=Country class="form-text text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div asp-validation-summary="All" class="text-danger"></div>
+</form>

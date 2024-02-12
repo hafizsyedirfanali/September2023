@@ -25,6 +25,26 @@ namespace DBProject.Controllers
         }
 
         [HttpGet]
+        public IActionResult StudentListByRegion(string? region)
+        {
+            //if (string.IsNullOrEmpty(region))
+            //{
+            //    return View("Error");
+            //}
+            var regions = studentServices.GetRegions();
+            ViewBag.Regions = regions;
+
+            if (!string.IsNullOrEmpty(region))
+            {
+                ViewBag.Region = region;
+                var result = studentServices.GetStudentListByRegion(region);
+                return View(result);
+            }
+            return View();
+        }
+       
+
+        [HttpGet]
         public IActionResult Create()
         {
             return View();

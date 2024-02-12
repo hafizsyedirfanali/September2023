@@ -3,6 +3,8 @@ using DBProject.Interfaces;
 using DBProject.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Versioning;
+using System.Collections.Generic;
+using System.Drawing;
 
 namespace DBProject.Repositories
 {
@@ -70,6 +72,19 @@ namespace DBProject.Repositories
             return false;
         }
 
+        public List<string> GetRegions()
+        {
+            var regions = dbContext.Students.AsNoTracking()
+                .Select(s => s.Region).ToList();
+            return regions;
+            //var twoColumns = dbContext.Students.AsNoTracking()
+            //    .Select(s => new 
+            //    {
+            //        s.Region, 
+            //        s.City
+            //    }).ToList();
+        }
+
         public StudentViewModel GetStudentById(Guid studentId)
         {
             //here we are not performing multiple database operations on 
@@ -112,17 +127,89 @@ namespace DBProject.Repositories
                 });
             }
             //following method will perform above operation in one instruction
-            var students1 = dbContext.Students.AsNoTracking().Select(s => new StudentViewModel
-            {
-                Address = s.Address,
-                City = s.City,
-                Country = s.Country,
-                Name = s.Name,
-                PostalCode = s.PostalCode,
-                Region = s.Region,
-                Id = s.Id
-            }).ToList();
+            var students1 = dbContext.Students.AsNoTracking()
+                .Select(s => new StudentViewModel
+                {
+                    Address = s.Address,
+                    City = s.City,
+                    Country = s.Country,
+                    Name = s.Name,
+                    PostalCode = s.PostalCode,
+                    Region = s.Region,
+                    Id = s.Id
+                }).ToList();
             return list;
+        }
+        
+        public List<StudentViewModel> GetStudentListByCity(string cityName)
+        {
+            var students = dbContext.Students.AsNoTracking()
+                .Where(s=>s.City.ToLower() == cityName.ToLower())//Case In-Sensitive
+                .Select(s => new StudentViewModel
+                {
+                    Address = s.Address,
+                    City = s.City,
+                    Country = s.Country,
+                    Name = s.Name,
+                    PostalCode = s.PostalCode,
+                    Region = s.Region,
+                    Id = s.Id
+                }).ToList();
+            return students;
+        }
+
+        public List<StudentViewModel> GetStudentListByCountry(string countryName)
+        {
+            var students = dbContext.Students.AsNoTracking()
+               .Where(s => s.Country.ToLower() == countryName.ToLower())//Case In-Sensitive
+               .Select(s => new StudentViewModel
+               {
+                   Address = s.Address,
+                   City = s.City,
+                   Country = s.Country,
+                   Name = s.Name,
+                   PostalCode = s.PostalCode,
+                   Region = s.Region,
+                   Id = s.Id
+               }).ToList();
+            return students;
+        }
+
+        public List<StudentViewModel> GetStudentListByRegion(string regionName)
+        {
+            var students = dbContext.Students.AsNoTracking()
+               .Where(s => s.Region.ToLower() == regionName.ToLower())//Case In-Sensitive
+               .Select(s => new StudentViewModel
+               {
+                   Address = s.Address,
+                   City = s.City,
+                   Country = s.Country,
+                   Name = s.Name,
+                   PostalCode = s.PostalCode,
+                   Region = s.Region,
+                   Id = s.Id
+               }).ToList();
+            return students;
+        }
+
+        public List<StudentViewModel> GetStudentListByStudentName(string studentName)
+        {
+            //Abdul Rahim -- In database
+            //Abdul -- search string
+            var students = dbContext.Students.AsNoTracking()
+               .Where(s => s.Name.ToLower().Contains(studentName.ToLower()))//Manual Case In-Sensitive
+               .Where(s => s.Name.Contains(studentName, StringComparison.OrdinalIgnoreCase))//Case In-Sensitive using StringComparision Class
+               .Select(s => new StudentViewModel
+               {
+                   Address = s.Address,
+                   City = s.City,
+                   Country = s.Country,
+                   Name = s.Name,
+                   PostalCode = s.PostalCode,
+                   Region = s.Region,
+                   Id = s.Id
+               }).ToList();
+            return students;
         }
 
         public bool UpdateStudent(StudentViewModel model)

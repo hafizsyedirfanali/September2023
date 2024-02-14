@@ -19,3 +19,62 @@
 10. Partial Views
 8. Entity Framework Core
 13. Error Handling
+
+Install Packages
+<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
+    <PackageReference Include="Serilog.Exceptions" Version="8.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+
+
+
+    var config = (IConfiguration)builder.Configuration;
+// Specifying the configuration for serilog
+Log.Logger = new LoggerConfiguration() // initiate the logger configuration
+                .ReadFrom.Configuration(config) // connect serilog to our configuration folder
+                .Enrich.FromLogContext() //Adds more information to our logs from built in Serilog 
+                .WriteTo.Console() // decide where the logs are going to be shown                           
+                .CreateLogger(); //initialise the logger
+builder.Host.UseSerilog();
+
+Configure in AppSetting.json
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "Default": "Warning",
+        "Microsoft": "Warning",
+        "Microsoft.Hosting.Lifetime": "Error"
+      }
+    },
+    "WriteTo": [
+      {
+        "Name": "File",
+        "Args": {
+          "path": "D:\\CardService.txt",
+          "outputTemplate": "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}",
+          "rollingInterval": "Day"
+        }
+      }
+    ],
+    "Enrich": [
+      "FromLogContext",
+      "WithMachineName"
+    ],
+    "Properties": {
+      "Application": "MultipleLogFilesSample"
+    }
+  },
+  "AppConfigs": {
+    "CardFilePath": "D:\\Preferred_Cardlist.txt",
+    "DbConnection": "Server=devkvd.database.windows.net;Database=DevQP;User Id=devdba;Password=u=GRDIE*&%nzkY*;MultipleActiveResultSets=true",
+    "SuccessFilePath": "D:\\Logs\\Success",
+    "ErrorFilePath": "D:\\Logs\\Failed",
+    "InsertRecordSize": "1000"
+  }
+
+
+Usage
+Log.Logger.Information("Application Starting");

@@ -3,10 +3,9 @@
 6. Authentication and Authorization
 12. Web API Integration
 14. Testing
-16. Configuration
 17. Globalization and Localization
 18. Deployment
-19. Security Best Practices
+19. Security Best Practices // Protect and Unprotect Values
 20. Performance Optimization
 1. Recap of Basics
 --------------------------------------------
@@ -19,6 +18,8 @@
 8. Entity Framework Core
 13. Error Handling
 15. Logging
+16. Configuration
+
 
 
 

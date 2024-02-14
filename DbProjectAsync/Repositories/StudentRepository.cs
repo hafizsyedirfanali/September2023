@@ -3,8 +3,11 @@ using DbProjectAsync.Interfaces;
 using DbProjectAsync.Models;
 using DbProjectAsync.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Serilog;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text.Json.Serialization;
 
 namespace DbProjectAsync.Repositories
 {
@@ -59,6 +62,7 @@ namespace DbProjectAsync.Repositories
             var responseModel = new ResponseModel<Guid>();
             try
             {
+                //throw new Exception("Cant get list of student");
                 Student student = new Student()
                 {
                     Address = model.Address,
@@ -82,7 +86,14 @@ namespace DbProjectAsync.Repositories
             catch (Exception ex)
             {
                 responseModel.ErrorCode = 1001;
-                responseModel.ErrorMessage = ex.Message;
+                responseModel.ErrorMessage = "Failed to Add Student";
+                Log.Logger.Error($"Error Code:{responseModel.ErrorCode}");
+                Log.Logger.Error($"Error Message:{responseModel.ErrorMessage}");
+                Log.Logger.Error(ex.Message);
+                Log.Logger.Error($"Stack Trace:{ex.StackTrace ?? "Nil"}");
+                var innerException = ex.InnerException != null ? ex.InnerException.Message : "Nil";
+                Log.Logger.Error($"Inner Exception:{innerException}");
+                Log.Logger.Information(JsonConvert.SerializeObject(model));
             }
             return responseModel;
         }
@@ -124,7 +135,13 @@ namespace DbProjectAsync.Repositories
             catch (Exception ex)
             {
                 responseModel.ErrorCode = 1002;
-                responseModel.ErrorMessage = ex.Message;
+                responseModel.ErrorMessage = "Failed to delete student";
+                Log.Logger.Error($"Error Code:{responseModel.ErrorCode}");
+                Log.Logger.Error($"Error Message:{responseModel.ErrorMessage}");
+                Log.Logger.Error(ex.Message);
+                Log.Logger.Error($"Stack Trace:{ex.StackTrace ?? "Nil"}");
+                var innerException = ex.InnerException != null ? ex.InnerException.Message : "Nil";
+                Log.Logger.Error($"Inner Exception:{innerException}");
             }
             return responseModel;
         }
@@ -154,7 +171,13 @@ namespace DbProjectAsync.Repositories
             catch (Exception ex) 
             {
                 responseModel.ErrorCode = 1003;
-                responseModel.ErrorMessage = ex.Message;
+                responseModel.ErrorMessage = "Failed to get regions";
+                Log.Logger.Error($"Error Code:{responseModel.ErrorCode}");
+                Log.Logger.Error($"Error Message:{responseModel.ErrorMessage}");
+                Log.Logger.Error(ex.Message);
+                Log.Logger.Error($"Stack Trace:{ex.StackTrace ?? "Nil"}");
+                var innerException = ex.InnerException != null ? ex.InnerException.Message : "Nil";
+                Log.Logger.Error($"Inner Exception:{innerException}");
             }
             return responseModel;
             //var twoColumns = dbContext.Students.AsNoTracking()
@@ -218,7 +241,13 @@ namespace DbProjectAsync.Repositories
             catch (Exception ex)
             {
                 responseModel.ErrorCode = 1004;
-                responseModel.ErrorMessage = ex.Message;
+                responseModel.ErrorMessage = "Failed to get student record";
+                Log.Logger.Error($"Error Code:{responseModel.ErrorCode}");
+                Log.Logger.Error($"Error Message:{responseModel.ErrorMessage}");
+                Log.Logger.Error(ex.Message);
+                Log.Logger.Error($"Stack Trace:{ex.StackTrace ?? "Nil"}");
+                var innerException = ex.InnerException != null ? ex.InnerException.Message : "Nil";
+                Log.Logger.Error($"Inner Exception:{innerException}");
             }
             return responseModel;
         }
@@ -292,7 +321,13 @@ namespace DbProjectAsync.Repositories
             catch (Exception ex)
             {
                 responseModel.ErrorCode = 1005;
-                responseModel.ErrorMessage = ex.Message;
+                responseModel.ErrorMessage = "Failed to get student list";
+                Log.Logger.Error($"Error Code:{responseModel.ErrorCode}");
+                Log.Logger.Error($"Error Message:{responseModel.ErrorMessage}");
+                Log.Logger.Error(ex.Message);
+                Log.Logger.Error($"Stack Trace:{ex.StackTrace??"Nil"}");
+                var innerException = ex.InnerException != null ? ex.InnerException.Message : "Nil";
+                Log.Logger.Error($"Inner Exception:{innerException}");
             }
             return responseModel;
         }
@@ -336,7 +371,13 @@ namespace DbProjectAsync.Repositories
             catch (Exception ex)
             {
                 responseModel.ErrorCode = 1006;
-                responseModel.ErrorMessage = ex.Message;
+                responseModel.ErrorMessage = "Failed to get student list by city";
+                Log.Logger.Error($"Error Code:{responseModel.ErrorCode}");
+                Log.Logger.Error($"Error Message:{responseModel.ErrorMessage}");
+                Log.Logger.Error(ex.Message);
+                Log.Logger.Error($"Stack Trace:{ex.StackTrace ?? "Nil"}");
+                var innerException = ex.InnerException != null ? ex.InnerException.Message : "Nil";
+                Log.Logger.Error($"Inner Exception:{innerException}");
             }
             return responseModel;
         }
@@ -484,7 +525,13 @@ namespace DbProjectAsync.Repositories
             catch (Exception ex)
             {
                 responseModel.ErrorCode = 1006;
-                responseModel.ErrorMessage = ex.Message;
+                responseModel.ErrorMessage = "Failed to update student";
+                Log.Logger.Error($"Error Code:{responseModel.ErrorCode}");
+                Log.Logger.Error($"Error Message:{responseModel.ErrorMessage}");
+                Log.Logger.Error(ex.Message);
+                Log.Logger.Error($"Stack Trace:{ex.StackTrace ?? "Nil"}");
+                var innerException = ex.InnerException != null ? ex.InnerException.Message : "Nil";
+                Log.Logger.Error($"Inner Exception:{innerException}");
             }
             return responseModel;
         }

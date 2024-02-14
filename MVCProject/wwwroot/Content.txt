@@ -1,15 +1,14 @@
-1. Recap of Basics
 4. View Components
 5. Areas
 6. Authentication and Authorization
 12. Web API Integration
 14. Testing
-15. Logging
 16. Configuration
 17. Globalization and Localization
 18. Deployment
 19. Security Best Practices
 20. Performance Optimization
+1. Recap of Basics
 --------------------------------------------
 2. Dependency Injection
 3. Tag Helpers
@@ -19,7 +18,15 @@
 10. Partial Views
 8. Entity Framework Core
 13. Error Handling
+15. Logging
 
+
+
+
+
+
+
+//Logging Notes
 Install Packages
 <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
     <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
@@ -66,15 +73,7 @@ Configure in AppSetting.json
     "Properties": {
       "Application": "MultipleLogFilesSample"
     }
-  },
-  "AppConfigs": {
-    "CardFilePath": "D:\\Preferred_Cardlist.txt",
-    "DbConnection": "Server=devkvd.database.windows.net;Database=DevQP;User Id=devdba;Password=u=GRDIE*&%nzkY*;MultipleActiveResultSets=true",
-    "SuccessFilePath": "D:\\Logs\\Success",
-    "ErrorFilePath": "D:\\Logs\\Failed",
-    "InsertRecordSize": "1000"
   }
-
 
 Usage
 Log.Logger.Information("Application Starting");

@@ -7,6 +7,7 @@
     <UserSecretsId>aspnet-MVCProject-a6c0a595-7c6e-4a89-895f-6718db9fa523</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+	<PackageReference Include="MailKit" Version="4.3.0" />
 	<PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.1" />
 	<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
@@ -18,8 +19,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+    <PackageReference Include="MimeKit" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Inventory\Controllers\" />
+    <Folder Include="Areas\Technical\Controllers\" />
     <Folder Include="wwwroot\Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RandomNumber\RandomNumber.csproj" />
   </ItemGroup>
 </Project>

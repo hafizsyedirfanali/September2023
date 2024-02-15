@@ -9,6 +9,10 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+
+
 var config = (IConfiguration)builder.Configuration;
 Log.Logger = new LoggerConfiguration() // initiate the logger configuration
                 .ReadFrom.Configuration(config) // connect serilog to our configuration folder
@@ -18,8 +22,8 @@ Log.Logger = new LoggerConfiguration() // initiate the logger configuration
 builder.Host.UseSerilog();
 
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContextPool<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IStudent, StudentRepository>();
 builder.Services.Configure<ComplexObjectClass>(config.GetSection("ComplexObject"));

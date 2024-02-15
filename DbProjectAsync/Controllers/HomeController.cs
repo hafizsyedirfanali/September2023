@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Serilog;
 using System.Diagnostics;
+using RandomNumber;
 
 namespace DbProjectAsync.Controllers
 {
@@ -23,6 +24,7 @@ namespace DbProjectAsync.Controllers
 
         public IActionResult Index()
         {
+            var number = RandomNumberClass.GetRandomNumber();
             _logger.LogInformation("Hello from logger");
             var value = configuration.GetSection("MyApplicationName").Value;
             var version = configuration.GetValue<int>("MyApplicationVersion");

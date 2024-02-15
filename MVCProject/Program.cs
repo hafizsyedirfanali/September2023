@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using MVCProject.Data;
 using MVCProject.Interfaces;
@@ -18,7 +19,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = true;//Confirm Email
-    options.SignIn.RequireConfirmedPhoneNumber = true;
+    //options.SignIn.RequireConfirmedPhoneNumber = true;
     options.Password.RequiredLength = 6;
     options.Password.RequireNonAlphanumeric = true;
     options.Password.RequireDigit = true;
@@ -48,9 +49,8 @@ builder.Services.AddSingleton<IStudent, StudentRepository>();
 //3. Transient Service:a separate instance will be created for each request.
 //Lifetime of such service is limited till execution of that request.
 //builder.Services.AddTransient<IStudent, StudentRepository>();
-
-
-
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IEmailSender, MailService>();
 
 var app = builder.Build();
 
@@ -77,6 +77,11 @@ app.UseRouting();//Endpoint / Path
 app.UseAuthentication();//It is a login process
 
 app.UseAuthorization();// its for classification of user
+
+app.MapControllerRoute(
+    name: "MyArea",
+    pattern: "{area:exists}/{controller=EnquiryHome}/{action=Index}/{id?}");
+
 
 app.MapControllerRoute(
     name: "default",

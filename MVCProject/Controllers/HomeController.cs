@@ -2,23 +2,24 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCProject.Models;
 using System.Diagnostics;
+using RandomNumber;
+
 
 namespace MVCProject.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController()
         {
-            _logger = logger;
         }
         public IActionResult Index()
         {
+            var number = RandomNumberClass.GetRandomNumber();
             //return NotFound();
             return View();
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
@@ -38,12 +39,6 @@ namespace MVCProject.Controllers
             return StatusCode(StatusCodes.Status404NotFound);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel 
-            { RequestId = Activity.Current?.Id ?? 
-            HttpContext.TraceIdentifier });
-        }
+       
     }
 }

@@ -6,7 +6,8 @@ using MVCProject.Interfaces;
 using MVCProject.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var clientId = "767081774260-cfjc1v0io5nj8jfs66n85grnbsteem7i.apps.googleusercontent.com";
+var clientSecret = "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";
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
@@ -31,7 +32,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Lockout.AllowedForNewUsers = true;
 }).AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddAuthentication();//Enables login system
+builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = clientId;
+    googleOptions.ClientSecret = clientSecret;
+}); ;//Enables login system
 builder.Services.AddAuthorization();//Enables classification of users
 
 

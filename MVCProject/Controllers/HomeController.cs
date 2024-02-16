@@ -19,7 +19,7 @@ namespace MVCProject.Controllers
             //return NotFound();
             return View();
         }
-        [Authorize]
+        
         public IActionResult Privacy()
         {
             return View();

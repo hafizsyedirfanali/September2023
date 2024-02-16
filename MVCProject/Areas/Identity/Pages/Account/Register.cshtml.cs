@@ -112,19 +112,18 @@ namespace MVCProject.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
+                var user = CreateUser();//This creates instance of Identity user
+                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);//this adds email to username property of IdentityUser
+                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);//this adds email to email property of Identity User
+                var result = await _userManager.CreateAsync(user, Input.Password);//This creates a new user in database 
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
-
-                if (result.Succeeded)
+                if (result.Succeeded)//if true, it means user is created
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                    var userId = await _userManager.GetUserIdAsync(user);//this gets the identity user id from database
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);//this creates a token for given Identity User
+                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));//This encodes the token into Base64
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,

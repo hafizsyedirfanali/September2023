@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MVCProject.Data;
 using MVCProject.Interfaces;
 using MVCProject.Repositories;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 var clientId = "767081774260-cfjc1v0io5nj8jfs66n85grnbsteem7i.apps.googleusercontent.com";
@@ -57,6 +60,26 @@ builder.Services.AddSingleton<IStudent, StudentRepository>();
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 builder.Services.AddTransient<IEmailSender, MailService>();
 
+builder.Services.AddLocalization(options =>
+{
+    options.ResourcesPath = "Resources";
+});
+builder.Services.AddMvc().AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization();
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new List<CultureInfo>
+    {
+        new CultureInfo("en"),
+        new CultureInfo("hi"),
+        new CultureInfo("mr"),
+    };
+    options.DefaultRequestCulture = new RequestCulture("en");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline. FIFO
@@ -82,6 +105,10 @@ app.UseRouting();//Endpoint / Path
 app.UseAuthentication();//It is a login process
 
 app.UseAuthorization();// its for classification of user
+
+
+app.UseRequestLocalization(((IApplicationBuilder)app).ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+
 
 app.MapControllerRoute(
     name: "MyArea",

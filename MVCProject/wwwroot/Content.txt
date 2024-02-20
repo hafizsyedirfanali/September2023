@@ -1,7 +1,7 @@
 4. View Components
+17. Globalization and Localization
 12. Web API Integration - Microservices
 14. Testing
-17. Globalization and Localization
 18. Deployment
 19. Security Best Practices // Protect and Unprotect Values
 20. Performance Optimization

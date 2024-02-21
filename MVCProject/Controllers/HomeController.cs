@@ -22,6 +22,8 @@ namespace MVCProject.Controllers
             ViewData["HelloWorld"] = localizer["HelloWorld"];
             var number = RandomNumberClass.GetRandomNumber();
             //return NotFound();
+            Response.Cookies.Append("Key", "Value", new CookieOptions { Expires= DateTime.Now.AddDays(1)});
+            
             return View();
         }
         [AllowAnonymous]

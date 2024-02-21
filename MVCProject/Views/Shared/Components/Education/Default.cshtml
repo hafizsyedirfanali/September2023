@@ -1,0 +1,29 @@
+﻿@if (Model is not null && Model.Count > 0)
+{
+    <table class="table table-bordered table-success">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.Name</td>
+                    <td>@student.Email</td>
+                    <td>@student.Phone</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>No record found</h3>
+}

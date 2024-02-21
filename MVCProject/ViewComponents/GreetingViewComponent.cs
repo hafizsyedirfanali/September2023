@@ -6,8 +6,8 @@ namespace MVCProject.ViewComponents
     {
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            string message = "Hello from view component";
-            return View("Default", message);
+            string model = "Hello from view component";
+            return View("Default", model);
         }
     }
 }

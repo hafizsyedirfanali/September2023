@@ -5,6 +5,10 @@ namespace MVCProject.Pages
 {
     public class MyRazorPageModel : PageModel
     {
+        public MyRazorPageModel()
+        {
+            
+        }
         public void OnGet()
         {
         }

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string projectName = "MyCompanyProject";
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -34,8 +37,8 @@
             @RenderBody()
         </main>
     </div>
-
-    <partial name="_FooterPartial" />
+    
+    <partial name="_FooterPartial" model="projectName" />
     <partial name="_ScriptsPartial" />
     @await RenderSectionAsync("Scripts", required: false)
 </body>

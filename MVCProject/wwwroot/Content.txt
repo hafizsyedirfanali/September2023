@@ -1,12 +1,17 @@
-4. View Components
-17. Globalization and Localization
 12. Web API Integration - Microservices
 14. Testing
 18. Deployment
 19. Security Best Practices // Protect and Unprotect Values
 20. Performance Optimization
 1. Recap of Basics
+SQL Language
+JavaScript
+HTML
+Css
+
 --------------------------------------------
+4. View Components
+17. Globalization and Localization
 2. Dependency Injection
 3. Tag Helpers
 7. Middleware

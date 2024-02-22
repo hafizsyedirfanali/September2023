@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBProject", "DBProject\DBPr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbProjectAsync", "DbProjectAsync\DbProjectAsync.csproj", "{57B39073-2854-4579-BE23-4795808BDF98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomNumber", "RandomNumber\RandomNumber.csproj", "{65D4646E-80CD-4E80-B8E9-926863DC4352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomNumber", "RandomNumber\RandomNumber.csproj", "{65D4646E-80CD-4E80-B8E9-926863DC4352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIProject", "APIProject\APIProject.csproj", "{285EEFAF-4AFE-4FF0-9C51-9C2BFD1C0011}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{65D4646E-80CD-4E80-B8E9-926863DC4352}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65D4646E-80CD-4E80-B8E9-926863DC4352}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65D4646E-80CD-4E80-B8E9-926863DC4352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{285EEFAF-4AFE-4FF0-9C51-9C2BFD1C0011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285EEFAF-4AFE-4FF0-9C51-9C2BFD1C0011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285EEFAF-4AFE-4FF0-9C51-9C2BFD1C0011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285EEFAF-4AFE-4FF0-9C51-9C2BFD1C0011}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

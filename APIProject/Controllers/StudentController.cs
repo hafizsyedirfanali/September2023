@@ -1,4 +1,5 @@
-﻿using DbProjectAsync.Interfaces;
+﻿using APIProject.Interfaces;
+using DbProjectAsync.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +17,9 @@ namespace APIProject.Controllers
         /// DELETE - Delete Verb
         /// Server Response Common Codes  - 200, 401,402,404, 500, 501, 502
         /// </summary>
-        private readonly IStudent student;
+        private readonly IStudentAPI student;
 
-        public StudentController(IStudent student)
+        public StudentController(IStudentAPI student)
         {
             this.student = student;
         }
@@ -28,7 +29,8 @@ namespace APIProject.Controllers
         public async Task<IActionResult> GetStudentList()
         {
             var result = await student.GetStudentListAsync().ConfigureAwait(false);
-            return Ok(result);
+            if (result.IsSuccess) return StatusCode(StatusCodes.Status200OK, result); //Ok(result);
+            else return StatusCode(StatusCodes.Status500InternalServerError, result);
         }
 
 

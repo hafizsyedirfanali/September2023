@@ -5,6 +5,7 @@ using System.Diagnostics;
 using RandomNumber;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.AspNetCore.Localization;
+using MVCProject.Interfaces;
 
 
 namespace MVCProject.Controllers
@@ -12,10 +13,12 @@ namespace MVCProject.Controllers
     public class HomeController : Controller
     {
         private readonly IHtmlLocalizer<HomeController> localizer;
+        private readonly IJWTServices jWTServices;
 
-        public HomeController(IHtmlLocalizer<HomeController> localizer)
+        public HomeController(IHtmlLocalizer<HomeController> localizer, IJWTServices jWTServices)
         {
             this.localizer = localizer;
+            this.jWTServices = jWTServices;
         }
         public IActionResult Index()
         {
@@ -26,6 +29,17 @@ namespace MVCProject.Controllers
             
             return View();
         }
+        [HttpGet]
+        public async Task<IActionResult> GetToken([FromHeader] string password)
+        {
+            if (password == "Abcd@1234")
+            {
+                var result = jWTServices.GenerateToken();
+                return Ok(new { token = result });
+            }
+            return BadRequest("Incorrect Credentials");
+        }
+
         [AllowAnonymous]
         [HttpPost]
         public IActionResult CultureManagement(string Culture, string returnUrl)

@@ -63,6 +63,22 @@ namespace DbProjectAsync.Controllers
             return View();
         }
         [HttpPost]
+        public async Task<IActionResult> AddRecord([FromForm] StudentViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //Add incoming model to database,i.e. pass it to AddStudent Service
+                var result = await studentServices.AddStudentAsync(model).ConfigureAwait(false);
+                if (!result.IsSuccess)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, new ErrorViewModel(result.ErrorCode, result.ErrorMessage));
+                }
+                return Ok();
+            }
+            return BadRequest(model);
+        }
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] StudentViewModel model)
         {

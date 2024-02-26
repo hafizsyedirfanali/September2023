@@ -1,10 +1,6 @@
 using APIProject.Interfaces;
 using APIProject.Repositories;
-using DbProjectAsync.Data;
-using DbProjectAsync.Interfaces;
-using DbProjectAsync.Repositories;
-using Microsoft.EntityFrameworkCore;
-
+using JWTProject;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.RegisterJWTService(builder.Configuration);
 
 var app = builder.Build();
 

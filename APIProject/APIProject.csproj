@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DbProjectAsync\DbProjectAsync.csproj" />
+    <ProjectReference Include="..\JWTProject\JWTProject.csproj" />
   </ItemGroup>
 
 </Project>

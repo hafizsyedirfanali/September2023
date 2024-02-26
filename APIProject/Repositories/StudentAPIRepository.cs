@@ -1,166 +1,93 @@
 ﻿using APIProject.Interfaces;
 using APIProject.Models;
-using DbProjectAsync.Interfaces;
-using DbProjectAsync.Models;
-using DbProjectAsync.ViewModels;
-using System.Linq;
+using JWTProject.Services;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace APIProject.Repositories
 {
     public class StudentAPIRepository : IStudentAPI
     {
-        private readonly IStudent student;
-        //Now data source will be API
+        private readonly IJWTServices jWTServices;
+        private readonly string baseUrl;
 
-        public StudentAPIRepository(IStudent student)
+        public StudentAPIRepository(IConfiguration configuration, IJWTServices jWTServices)
         {
-            this.student = student;
+            this.jWTServices = jWTServices;
+            this.baseUrl = configuration.GetSection("EndPointUrl").Value ??
+            throw new Exception("Server not found");
         }
 
         public async Task<ResponseModel<Guid>> AddStudentAsync(StudentModel model)
         {
-            var result = await student.AddStudentAsync(new StudentViewModel
+            var responseModel = new ResponseModel();
+            try
             {
-                Address = model.Address,
-                City = model.City,
-                Country = model.Country,
-                Id = model.Id,
-                Name = model.Name,
-                PostalCode = model.PostalCode,
-                Region = model.Region
-            }).ConfigureAwait(false);
-            return result;
-        }
-
-        public async Task<ResponseModel> DeleteStudentAsync(Guid studentId)
-        {
-            var result = await student.DeleteStudentAsync(studentId).ConfigureAwait(false);
-            return result;
-        }
-
-        public async Task<ResponseModel<List<string>>> GetRegionsAsync()
-        {
-            var result = await student.GetRegionsAsync().ConfigureAwait(false);
-            return result;
-        }
-
-        public async Task<ResponseModel<StudentModel>> GetStudentByIdAsync(Guid studentId)
-        {
-            var result = await student.GetStudentByIdAsync(studentId).ConfigureAwait(false);
-            return new ResponseModel<StudentModel>
+                var tokenResponse = await jWTServices.ReadToken();
+                if (!tokenResponse.IsSuccess) throw new Exception($"Error code: {tokenResponse.ErrorCode}, Error message : {tokenResponse.ErrorMessage}");
+                var token = tokenResponse.Result;
+                using HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                var data = JsonConvert.SerializeObject(model);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = await client.PostAsync("/Student/AddRecord", content);
+                response.EnsureSuccessStatusCode();
+                var responseString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<ResponseModel>(responseString);
+                responseModel = result;
+            }
+            catch (Exception ex)
             {
-                ErrorCode = result.ErrorCode,
-                ErrorMessage = result.ErrorMessage,
-                IsSuccess = result.IsSuccess,
-                Result = new StudentModel
-                {
-                    Address = result.Result.Address, City = result.Result.City,
-                    Country = result.Result.Country,
-                    Id = result.Result.Id,
-                    Name = result.Result.Name,
-                    PostalCode = result.Result.PostalCode,
-                    Region = result.Result.Region
-                }
-            };
+                responseModel!.ErrorCode = 8001;
+                responseModel.ErrorMessage = ex.Message;
+            }
+
+            return responseModel!;
         }
 
-        public async Task<ResponseModel<List<StudentModel>>> GetStudentListAsync()
+        public Task<ResponseModel> DeleteStudentAsync(Guid studentId)
         {
-            var result = await student.GetStudentListAsync().ConfigureAwait(false);
-            return new ResponseModel<List<StudentModel>>()
-            {
-                ErrorMessage = result.ErrorMessage,
-                ErrorCode = result.ErrorCode,
-                IsSuccess = result.IsSuccess,
-                Result = result.Result.Select(s => new StudentModel
-                {
-                    Address = s.Address,
-                    City = s.City,
-                    Country = s.Country,
-                    Id = s.Id,
-                    Name = s.Name,
-                    PostalCode = s.PostalCode,
-                    Region = s.Region
-                }).ToList()
-            };
+            throw new NotImplementedException();
         }
 
-        public async Task<ResponseModel<List<StudentModel>>> GetStudentListByCityAsync(string cityName)
+        public Task<ResponseModel<List<string>>> GetRegionsAsync()
         {
-            var result = await student.GetStudentListByCityAsync(cityName).ConfigureAwait(false);
-            return new ResponseModel<List<StudentModel>>()
-            {
-                ErrorMessage = result.ErrorMessage,
-                ErrorCode = result.ErrorCode,
-                IsSuccess = result.IsSuccess,
-                Result = result.Result.Select(s => new StudentModel
-                {
-                    Address = s.Address,
-                    City = s.City,
-                    Country = s.Country,
-                    Id = s.Id,
-                    Name = s.Name,
-                    PostalCode = s.PostalCode,
-                    Region = s.Region
-                }).ToList()
-            };
+            throw new NotImplementedException();
         }
 
-        public async Task<ResponseModel<List<StudentModel>>> GetStudentListByRegionAsync(string regionName)
+        public Task<ResponseModel<StudentModel>> GetStudentByIdAsync(Guid studentId)
         {
-            var result = await student.GetStudentListByRegionAsync(regionName).ConfigureAwait(false);
-            return new ResponseModel<List<StudentModel>>()
-            {
-                ErrorMessage = "Failed to get list of student",
-                ErrorCode = 10001,
-                IsSuccess = true,
-                Result = result.Select(s => new StudentModel
-                {
-                    Address = s.Address,
-                    City = s.City,
-                    Country = s.Country,
-                    Id = s.Id,
-                    Name = s.Name,
-                    PostalCode = s.PostalCode,
-                    Region = s.Region
-                }).ToList()
-            };
+            throw new NotImplementedException();
         }
 
-        public async Task<ResponseModel<List<StudentModel>>> GetStudentListByStudentNameAsync(string studentName)
+        public Task<ResponseModel<List<StudentModel>>> GetStudentListAsync()
         {
-            var result = await student.GetStudentListByStudentNameAsync(studentName).ConfigureAwait(false);
-            return new ResponseModel<List<StudentModel>>()
-            {
-                ErrorMessage = "Failed to get list of student",
-                ErrorCode = 10002,
-                IsSuccess = true,
-                Result = result.Select(s => new StudentModel
-                {
-                    Address = s.Address,
-                    City = s.City,
-                    Country = s.Country,
-                    Id = s.Id,
-                    Name = s.Name,
-                    PostalCode = s.PostalCode,
-                    Region = s.Region
-                }).ToList()
-            };
+            throw new NotImplementedException();
         }
 
-        public async Task<ResponseModel> UpdateStudentAsync(StudentModel model)
+        public Task<ResponseModel<List<StudentModel>>> GetStudentListByCityAsync(string cityName)
         {
-            var result = await student.UpdateStudentAsync(new StudentViewModel
-            {
-                Address = model.Address,
-                City = model.City,
-                Country = model.Country,
-                Id = model.Id,
-                Name = model.Name,
-                PostalCode = model.PostalCode,
-                Region = model.Region
-            }).ConfigureAwait(false);
-            return result;
+            throw new NotImplementedException();
+        }
+
+        public Task<ResponseModel<List<StudentModel>>> GetStudentListByRegionAsync(string regionName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ResponseModel<List<StudentModel>>> GetStudentListByStudentNameAsync(string studentName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ResponseModel> UpdateStudentAsync(StudentModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

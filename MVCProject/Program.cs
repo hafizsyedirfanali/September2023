@@ -1,12 +1,15 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using MVCProject.Data;
 using MVCProject.Interfaces;
 using MVCProject.Repositories;
 using System.Globalization;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var clientId = "767081774260-cfjc1v0io5nj8jfs66n85grnbsteem7i.apps.googleusercontent.com";
@@ -35,11 +38,28 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Lockout.AllowedForNewUsers = true;
 }).AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = clientId;
     googleOptions.ClientSecret = clientSecret;
-}); ;//Enables login system
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = builder.Configuration.GetSection("JwtSettings:Issuer").Value,
+        ValidAudience = builder.Configuration.GetSection("JwtSettings:Audience").Value,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JwtSettings:Key").Value!)),
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true
+    };
+});
 builder.Services.AddAuthorization();//Enables classification of users
 
 
@@ -49,6 +69,8 @@ builder.Services.AddMvc();
 //1. Singleton Service: a single instance will response all the requests
 //Lifetime of singleton is till END of program.
 builder.Services.AddSingleton<IStudent, StudentRepository>();
+builder.Services.AddScoped<IJWTServices, JWTRepository>();
+
 //2. Scoped Service: a single instance will response all
 //the request arising within its scope,
 //and for each scope a new instance is created.

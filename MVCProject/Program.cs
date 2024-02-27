@@ -69,7 +69,6 @@ builder.Services.AddMvc();
 //1. Singleton Service: a single instance will response all the requests
 //Lifetime of singleton is till END of program.
 builder.Services.AddSingleton<IStudent, StudentRepository>();
-builder.Services.AddScoped<IJWTServices, JWTRepository>();
 
 //2. Scoped Service: a single instance will response all
 //the request arising within its scope,

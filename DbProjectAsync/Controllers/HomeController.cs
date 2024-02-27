@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using Serilog;
 using System.Diagnostics;
 using RandomNumber;
+using DbProjectAsync.Interfaces;
 
 namespace DbProjectAsync.Controllers
 {
@@ -12,16 +13,28 @@ namespace DbProjectAsync.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration configuration;
         private readonly IOptions<ComplexObjectClass> options;
+        private readonly IJWTServices jWTServices;
 
-        public HomeController(ILogger<HomeController> logger, 
+        public HomeController(ILogger<HomeController> logger,
             IConfiguration configuration,
-            IOptions<ComplexObjectClass> options)
+            IOptions<ComplexObjectClass> options,
+            IJWTServices jWTServices)
         {
             _logger = logger;
             this.configuration = configuration;
             this.options = options;
+            this.jWTServices = jWTServices;
         }
-
+        [HttpGet]
+        public async Task<IActionResult> GetToken([FromHeader] string password)
+        {
+            if (password == "Abcd@1234")
+            {
+                var result = jWTServices.GenerateToken();
+                return Ok(new { token = result });
+            }
+            return BadRequest("Incorrect Credentials");
+        }
         public IActionResult Index()
         {
             var number = RandomNumberClass.GetRandomNumber();

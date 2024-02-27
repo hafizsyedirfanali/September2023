@@ -11,7 +11,7 @@ namespace JWTProject
     {
         public static void RegisterJWTService(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<IJWTServices, JWTRepository>();
+            services.AddTransient<IJWTServices, JWTRepository>();
         }
     }
 }

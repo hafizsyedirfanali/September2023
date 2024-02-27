@@ -11,9 +11,9 @@ namespace JWTProject.Repositories
 {
     public class JWTRepository : IJWTServices
     {
-        private readonly IConfiguration configuration;
-        private readonly IHttpContextAccessor httpContextAccessor;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly IConfiguration configuration;//Used to read configuration/appsettings.json
+        private readonly IHttpContextAccessor httpContextAccessor;//Used to Read Write Cookie
+        private readonly SignInManager<IdentityUser> signInManager;//Used here to Signout user
         public JWTRepository(IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor, SignInManager<IdentityUser> signInManager)
         {

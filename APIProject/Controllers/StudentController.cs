@@ -1,5 +1,4 @@
 ﻿using APIProject.Interfaces;
-using DbProjectAsync.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,11 +17,19 @@ namespace APIProject.Controllers
         /// Server Response Common Codes  - 200, 401,402,404, 500, 501, 502
         /// </summary>
         private readonly IStudentAPI student;
-
         public StudentController(IStudentAPI student)
         {
             this.student = student;
         }
+        [HttpGet]
+        [Route("GetToken")]
+        public async Task<IActionResult> GetToken()
+        {
+            var token = await student.GetToken();
+
+            return Ok(token);
+        }
+
 
         [HttpGet]
         [Route("GetStudentList")]

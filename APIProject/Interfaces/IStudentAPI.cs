@@ -1,10 +1,10 @@
 ﻿using APIProject.Models;
-using DbProjectAsync.Models;
 
 namespace APIProject.Interfaces
 {
     public interface IStudentAPI
     {
+        Task<string> GetToken();
         Task<ResponseModel<Guid>> AddStudentAsync(StudentModel model);
         Task<ResponseModel<StudentModel>> GetStudentByIdAsync(Guid studentId);
         Task<ResponseModel> UpdateStudentAsync(StudentModel model);

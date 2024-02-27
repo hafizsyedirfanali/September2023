@@ -13,4 +13,8 @@
         public string ErrorMessage { get; set; }
         public bool IsSuccess { get; set; }
     }
+    public class TokenModel
+    {
+        public string token { get; set; }
+    }
 }

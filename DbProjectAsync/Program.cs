@@ -2,9 +2,12 @@ using DbProjectAsync.Data;
 using DbProjectAsync.Interfaces;
 using DbProjectAsync.Models;
 using DbProjectAsync.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,13 +23,31 @@ Log.Logger = new LoggerConfiguration() // initiate the logger configuration
                 .WriteTo.Console() // decide where the logs are going to be shown                           
                 .CreateLogger(); //initialise the logger
 builder.Host.UseSerilog();
-
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = builder.Configuration.GetSection("JwtSettings:Issuer").Value,
+        ValidAudience = builder.Configuration.GetSection("JwtSettings:Audience").Value,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JwtSettings:Key").Value!)),
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true
+    };
+});
 
 
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IStudent, StudentRepository>();
 builder.Services.Configure<ComplexObjectClass>(config.GetSection("ComplexObject"));
+builder.Services.AddScoped<IJWTServices, JWTRepository>();
 
 var app = builder.Build();
 

@@ -1,4 +1,4 @@
-﻿namespace MVCProject.Interfaces
+﻿namespace DbProjectAsync.Interfaces
 {
     public interface IJWTServices
     {

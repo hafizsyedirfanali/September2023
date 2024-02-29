@@ -13,13 +13,13 @@ namespace JWTProject.Repositories
     {
         private readonly IConfiguration configuration;//Used to read configuration/appsettings.json
         private readonly IHttpContextAccessor httpContextAccessor;//Used to Read Write Cookie
-        private readonly SignInManager<IdentityUser> signInManager;//Used here to Signout user
+        
         public JWTRepository(IConfiguration configuration,
-            IHttpContextAccessor httpContextAccessor, SignInManager<IdentityUser> signInManager)
+            IHttpContextAccessor httpContextAccessor)
         {
             this.configuration = configuration;
             this.httpContextAccessor = httpContextAccessor;
-            this.signInManager = signInManager;
+        
         }
 
 
@@ -124,7 +124,7 @@ namespace JWTProject.Repositories
                 }
                 else
                 {
-                    await signInManager.SignOutAsync();
+                    throw new ArgumentNullException(nameof(token)+" Token is expired or null");
                 }
             }
             catch (Exception ex)

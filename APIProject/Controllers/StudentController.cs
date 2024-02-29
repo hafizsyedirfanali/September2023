@@ -26,10 +26,9 @@ namespace APIProject.Controllers
         public async Task<IActionResult> GetToken()
         {
             var token = await student.GetToken();
-
+            await student.SaveToken(token);
             return Ok(token);
         }
-
 
         [HttpGet]
         [Route("GetStudentList")]

@@ -17,6 +17,10 @@ namespace APIProject.Repositories
             this.baseUrl = configuration.GetSection("EndPointUrl").Value ??
             throw new Exception("Server not found");
         }
+        public async Task SaveToken(string token)
+        {
+            var saveResult = await jWTServices.SaveToken(token);
+        }
         public async Task<string> GetToken()
         {
             using HttpClient client = new HttpClient();
@@ -80,9 +84,18 @@ namespace APIProject.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<ResponseModel<List<StudentModel>>> GetStudentListAsync()
+        public async Task<ResponseModel<List<StudentModel>>> GetStudentListAsync()
         {
-            throw new NotImplementedException();
+            using HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Add("password", "Abcd@1234");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var response = await client.GetAsync("/Student/GetStudentList");
+            response.EnsureSuccessStatusCode();
+            var responseString = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<ResponseModel<List<StudentModel>>>(responseString);
+            return result;
         }
 
         public Task<ResponseModel<List<StudentModel>>> GetStudentListByCityAsync(string cityName)

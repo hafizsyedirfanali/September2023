@@ -4,6 +4,7 @@ namespace APIProject.Interfaces
 {
     public interface IStudentAPI
     {
+        Task SaveToken(string token);
         Task<string> GetToken();
         Task<ResponseModel<Guid>> AddStudentAsync(StudentModel model);
         Task<ResponseModel<StudentModel>> GetStudentByIdAsync(Guid studentId);

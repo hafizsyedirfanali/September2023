@@ -21,7 +21,7 @@ namespace DbProjectAsync.Repositories
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keySecret));
 
             //var roles = new[] { "Admin", "Editor" };
-            var roles = new[] { "Admin"};
+            var roles = new[] { "Editor"};
             //var policies = new[] { "AdminPolicy", "EditorPolicy" };
             var roleClaims = roles.Select(role => new Claim(ClaimTypes.Role, role));
             //var policyClaims = policies.Select(policy => new Claim("policy", policy));

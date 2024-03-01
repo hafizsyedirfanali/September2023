@@ -2,7 +2,9 @@
 using APIProject.Models;
 using JWTProject.Services;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace APIProject.Repositories
 {
@@ -26,48 +28,49 @@ namespace APIProject.Repositories
             using HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Add("password", "Abcd@1234");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var response = await client.GetAsync("/Home/GetToken");
             response.EnsureSuccessStatusCode();
+            //if (response.IsSuccessStatusCode)
+            //{
+
+            //}
             var responseString = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<TokenModel>(responseString);
             return result.token;
         }
-        public Task<ResponseModel<Guid>> AddStudentAsync(StudentModel model)
+
+
+        public async Task<ResponseModel<Guid>> AddStudentAsync(StudentModel model)
         {
-            throw new NotImplementedException();
+            var responseModel = new ResponseModel<Guid>();
+            try
+            {
+                var tokenResponse = await jWTServices.ReadToken();
+                if (!tokenResponse.IsSuccess) throw new Exception($"Error code: {tokenResponse.ErrorCode}, Error message : {tokenResponse.ErrorMessage}");
+                var token = tokenResponse.Result;
+                using HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                var data = JsonConvert.SerializeObject(model);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                //client.DefaultRequestHeaders.Accept.Clear();
+                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = await client.PostAsync("/Student/AddRecord", content);
+                response.EnsureSuccessStatusCode();
+                var responseString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<ResponseModel<Guid>>(responseString);
+                responseModel = result;
+            }
+            catch (Exception ex)
+            {
+                responseModel!.ErrorCode = 8001;
+                responseModel.ErrorMessage = ex.Message;
+            }
+
+            return responseModel!;
         }
-
-        //public async Task<ResponseModel<Guid>> AddStudentAsync(StudentModel model)
-        //{
-        //    var responseModel = new ResponseModel();
-        //    try
-        //    {
-        //        var tokenResponse = await jWTServices.ReadToken();
-        //        if (!tokenResponse.IsSuccess) throw new Exception($"Error code: {tokenResponse.ErrorCode}, Error message : {tokenResponse.ErrorMessage}");
-        //        var token = tokenResponse.Result;
-        //        using HttpClient client = new HttpClient();
-        //        client.BaseAddress = new Uri(baseUrl);
-        //        var data = JsonConvert.SerializeObject(model);
-        //        var content = new StringContent(data, Encoding.UTF8, "application/json");
-        //        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        //        client.DefaultRequestHeaders.Accept.Clear();
-        //        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //        var response = await client.PostAsync("/Student/AddRecord", content);
-        //        response.EnsureSuccessStatusCode();
-        //        var responseString = await response.Content.ReadAsStringAsync();
-        //        var result = JsonConvert.DeserializeObject<ResponseModel>(responseString);
-        //        responseModel = result;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        responseModel!.ErrorCode = 8001;
-        //        responseModel.ErrorMessage = ex.Message;
-        //    }
-
-        //    return responseModel!;
-        //}
 
         public Task<ResponseModel> DeleteStudentAsync(Guid studentId)
         {
@@ -86,11 +89,16 @@ namespace APIProject.Repositories
 
         public async Task<ResponseModel<List<StudentModel>>> GetStudentListAsync()
         {
+            var tokenResult = await jWTServices.ReadToken();
+            if (!tokenResult.IsSuccess)
+            {
+                throw new Exception(tokenResult.ErrorCode + ";" + tokenResult.ErrorMessage);
+            }
             using HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUrl);
-            client.DefaultRequestHeaders.Add("password", "Abcd@1234");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenResult.Result);
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var response = await client.GetAsync("/Student/GetStudentList");
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();

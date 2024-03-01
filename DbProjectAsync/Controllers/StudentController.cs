@@ -1,6 +1,7 @@
 ﻿using DbProjectAsync.Interfaces;
 using DbProjectAsync.Models;
 using DbProjectAsync.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbProjectAsync.Controllers
@@ -20,6 +21,7 @@ namespace DbProjectAsync.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles ="User,Admin")]//will allow both User as well as Admin
         public async Task<IActionResult> GetStudentList()
         {
             var result = await studentServices.GetStudentListAsync().ConfigureAwait(false);
@@ -31,7 +33,7 @@ namespace DbProjectAsync.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddRecord([FromForm] StudentViewModel model)
+        public async Task<IActionResult> AddRecord([FromBody] StudentViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -39,11 +41,16 @@ namespace DbProjectAsync.Controllers
                 var result = await studentServices.AddStudentAsync(model).ConfigureAwait(false);
                 if (!result.IsSuccess)
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new ErrorViewModel(result.ErrorCode, result.ErrorMessage));
+                    return StatusCode(StatusCodes.Status500InternalServerError, result);
                 }
-                return Ok();
+                return Ok(result);
             }
-            return BadRequest(model);
+            string errors = string.Empty;
+            foreach (var item in ModelState.Values.SelectMany(s=>s.Errors).ToList())
+            {
+                errors += item.ErrorMessage +";";
+            }
+            return BadRequest(new {ErrorMessage = errors, ErrorCode = 2001});
         }
 
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

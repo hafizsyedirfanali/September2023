@@ -1,4 +1,5 @@
 ﻿using APIProject.Interfaces;
+using APIProject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,7 +39,26 @@ namespace APIProject.Controllers
             if (result.IsSuccess) return StatusCode(StatusCodes.Status200OK, result); //Ok(result);
             else return StatusCode(StatusCodes.Status500InternalServerError, result);
         }
-
+        [HttpPost]
+        [Route("AddRecord")]
+        public async Task<IActionResult> AddRecord([FromForm] StudentModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await student.AddStudentAsync(model);
+                if (result.IsSuccess)
+                {
+                    return Ok(result);
+                }
+                return StatusCode(StatusCodes.Status500InternalServerError, result);
+            }
+            string errors = string.Empty;
+            foreach (var item in ModelState.Values.SelectMany(s=>s.Errors).ToList())
+            {
+                errors += item.ErrorMessage + "; ";
+            }
+            return BadRequest(new { ErrorMessage = errors });
+        }
 
     }
 }

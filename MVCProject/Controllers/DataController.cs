@@ -12,6 +12,19 @@ namespace MVCProject.Controllers
         /// Once data is red from the variable/key, it is marked for deletion, which is then deleted by GC.
         /// </summary>
         /// <returns></returns>
+
+        [HttpGet]
+        public IActionResult HTMLTags()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult HTMLTags(HTMLTagsViewModel model)
+        {
+            return View(model);
+        }
+
         public IActionResult ViewDataAction()
         {
             ViewData["WelcomeText"] = "Hello from Irfan Sir. Its cold today";

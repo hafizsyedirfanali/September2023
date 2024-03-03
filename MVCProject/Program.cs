@@ -47,19 +47,20 @@ builder.Services.AddAuthentication(options =>
 {
     googleOptions.ClientId = clientId;
     googleOptions.ClientSecret = clientSecret;
-}).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidIssuer = builder.Configuration.GetSection("JwtSettings:Issuer").Value,
-        ValidAudience = builder.Configuration.GetSection("JwtSettings:Audience").Value,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JwtSettings:Key").Value!)),
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true
-    };
 });
+//.AddJwtBearer(options =>
+//{
+//    options.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidIssuer = builder.Configuration.GetSection("JwtSettings:Issuer").Value,
+//        ValidAudience = builder.Configuration.GetSection("JwtSettings:Audience").Value,
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("JwtSettings:Key").Value!)),
+//        ValidateIssuer = true,
+//        ValidateAudience = true,
+//        ValidateLifetime = true,
+//        ValidateIssuerSigningKey = true
+//    };
+//});
 builder.Services.AddAuthorization();//Enables classification of users
 
 

@@ -1,0 +1,80 @@
+﻿@model HTMLTagsViewModel
+@{
+}
+<form method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>Input Number<label asp-for="Age"></label></td>
+            <td>
+                <input type="number" asp-for="Age" />
+            </td>
+        </tr>
+        <tr>
+            <td>Select</td>
+            <td>
+                <select asp-for="Gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Multi Select</td>
+            <td>
+                <select multiple asp-for="ElectronicItems">
+                    <option>Mobile</option>
+                    <option>Laptop</option>
+                    <option>Television</option>
+                    <option>AirConditioner</option>
+                    <option>SmartWatch</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>File Upload</td>
+            <td>
+                <input type="file" asp-for="File" />
+            </td>
+        </tr>
+        <tr>
+            <td>Files Upload</td>
+            <td>
+                <input type="file" multiple asp-for="Files" />
+            </td>
+        </tr>
+        <tr>
+            <td>Radio Buttons</td>
+            <td>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="Online" id="Online" asp-for="PaymentMode">
+                    <label class="form-check-label" for="Online">Online</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="Cash" id="Cash" asp-for="PaymentMode" checked>
+                    <label class="form-check-label" for="Cash">Cash</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="Cheque" id="Cheque" asp-for="PaymentMode">
+                    <label class="form-check-label" for="Cheque">Cheque</label>
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td>Check box</td>
+            <td>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="IsEligible">
+                    <label class="form-check-label" asp-for="IsEligible"></label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Textarea</td>
+            <td>
+                <textarea rows="4" asp-for="Address"></textarea>
+            </td>
+        </tr>
+    </table>
+    <button type="submit">Submit</button>
+</form>

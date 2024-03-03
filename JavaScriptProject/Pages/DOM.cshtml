@@ -1,0 +1,88 @@
+﻿@page
+@model JavaScriptProject.Pages.DOMModel
+@{
+}
+
+@section Styles{
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            margin: 10px;
+        }
+    </style>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+}
+<div>
+    <h1>DOM Manipulation:</h1>
+    <h2>
+        Selecting and modifying HTML elements
+    </h2>
+    <div id="myDiv">Hello, I'm a div!</div>
+
+
+    <hr />
+
+    <h2>
+        Event handling
+    </h2>
+    <button id="myButton">Click me!</button>
+
+
+    <hr />
+    <h2>
+        DOM traversal and manipulation
+    </h2>
+    <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+</div>
+@section Scripts {
+    <script>
+        // Selecting an element by ID
+        let myDiv = document.getElementById('myDiv');
+
+        // Modifying the element's content
+        myDiv.innerHTML = 'Changed Content';
+
+        // Modifying the element's style
+        myDiv.style.backgroundColor = 'lightgreen';
+    </script>
+    <script>
+        // Selecting an element by ID
+        let myButton = document.getElementById('myButton');
+
+        // Adding an event listener for the 'click' event
+        myButton.addEventListener('click', function () {
+            alert('Button clicked!');
+        });
+    </script>
+    <script>
+        // Selecting an element by ID
+        let myList = document.getElementById('myList');
+
+        // Adding a new list item
+        let newItem = document.createElement('li');
+        newItem.textContent = 'New Item';
+        myList.appendChild(newItem);
+
+        // Removing the first list item
+        let firstItem = myList.querySelector('li');
+        if (firstItem) {
+            myList.removeChild(firstItem);
+        }
+    </script>
+}

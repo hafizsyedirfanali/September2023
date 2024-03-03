@@ -1,0 +1,88 @@
+﻿@page
+@model JavaScriptProject.Pages.ErrorHandlingModel
+@{
+}
+<div>
+    <h1>
+        Error Handling:
+    </h1>
+    <h2>
+        try, catch, finally and Custom error handling
+    </h2>
+    <pre>
+        try {
+            // Simulating a code block that might throw an error
+            const result = someFunction();
+            console.log('Result:', result);
+        } catch (error) {
+            // Catching and handling the error
+            console.error('Caught an error:', error.message);
+        } finally {
+            // Code in this block will always be executed, regardless of whether an error occurred or not
+            console.log('Finally block executed');
+        }
+
+        // Custom error handling function
+        function customErrorHandling() {
+            try {
+                // Simulating an error
+                throw new Error('Custom Error');
+            } catch (error) {
+                // Handling the error in a custom way
+                console.error('Custom error handling:', error.message);
+                // You can log the error, send it to a server, or perform other custom actions
+            } finally {
+                console.log('Custom error handling finally block');
+            }
+        }
+
+        // Call the custom error handling function
+        customErrorHandling();
+    </pre>
+    <pre>
+        The try block contains the code that might throw an error. 
+        In this case, it calls a function (someFunction) that doesn't exist, resulting in an error.
+
+        The catch block catches the error and logs the error message. 
+        This block is executed only if an error occurs in the try block.
+
+        The finally block contains code that will always be executed, 
+        regardless of whether an error occurred or not. This is useful for cleanup operations.
+
+        The customErrorHandling function demonstrates custom error handling. 
+        It throws a custom error, catches it, and performs custom actions, 
+        such as logging the error and executing code in the finally block.
+    </pre>
+</div>
+@section Scripts {
+    <script>
+        try {
+            // Simulating a code block that might throw an error
+            const result = someFunction();
+            console.log('Result:', result);
+        } catch (error) {
+            // Catching and handling the error
+            console.error('Caught an error:', error.message);
+        } finally {
+            // Code in this block will always be executed, regardless of whether an error occurred or not
+            console.log('Finally block executed');
+        }
+
+        // Custom error handling function
+        function customErrorHandling() {
+            try {
+                // Simulating an error
+                throw new Error('Custom Error');
+            } catch (error) {
+                // Handling the error in a custom way
+                console.error('Custom error handling:', error.message);
+                // You can log the error, send it to a server, or perform other custom actions
+            } finally {
+                console.log('Custom error handling finally block');
+            }
+        }
+
+        // Call the custom error handling function
+        customErrorHandling();
+    </script>
+}

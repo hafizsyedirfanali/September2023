@@ -1,0 +1,109 @@
+﻿@page
+@model JavaScriptProject.Pages.StorageModel
+@{
+}
+<div>
+    <h1>
+        Browser Storage:
+    </h1>
+    <p>There are two types of web storage: Local Storage and Session Storage. Additionally, cookies are another way to store information on the client side. </p>
+    <h2>
+        Local Storage and Session Storage and Cookies
+    </h2>
+    <pre>
+        // Local Storage Example
+        // Save data to Local Storage
+        localStorage.setItem('user', 'Irfan Sir');
+
+        // Retrieve data from Local Storage
+        const localUser = localStorage.getItem('user');
+        console.log('Local Storage - User:', localUser);
+
+        // Session Storage Example
+        // Save data to Session Storage
+        sessionStorage.setItem('token', 'abc123');
+
+        // Retrieve data from Session Storage
+        const sessionToken = sessionStorage.getItem('token');
+        console.log('Session Storage - Token:', sessionToken);
+
+        // Cookies Example
+        // Set a cookie with an expiration date (7 days)
+        document.cookie = 'theme=dark; expires=' + new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString();
+
+        // Retrieve data from cookies
+        const cookies = document.cookie.split(';');
+        console.log('Cookies:', cookies);
+
+        // Function to get the value of a specific cookie
+        function getCookie(name) {
+            const cookieName = name + '=';
+            for (const cookie of cookies) {
+                let currentCookie = cookie.trim();
+                if (currentCookie.indexOf(cookieName) === 0) {
+                    return currentCookie.substring(cookieName.length, currentCookie.length);
+                }
+            }
+            return null;
+        }
+
+        // Get the value of the 'theme' cookie
+        const themeCookie = getCookie('theme');
+        console.log('Theme Cookie:', themeCookie);
+    </pre>
+    <pre>
+        Local Storage: The localStorage object allows you to store key-value pairs persistently across browser sessions. 
+        In this example, we store a user's name and retrieve it.
+
+        Session Storage: Similar to Local Storage, sessionStorage stores data but only for the duration of the page session. 
+        We store a token in this example.
+
+        Cookies: Cookies are small pieces of data sent from a website and stored on the user's computer by the user's web browser. 
+        In this example, we set a cookie with an expiration date and retrieve its value. 
+        The getCookie function is used to extract the value of a specific cookie.
+    </pre>
+</div>
+@section Scripts {
+    <script>
+        // Local Storage Example
+        // Save data to Local Storage
+        localStorage.setItem('user', 'Irfan Sir');
+
+        // Retrieve data from Local Storage
+        const localUser = localStorage.getItem('user');
+        console.log('Local Storage - User:', localUser);
+
+        // Session Storage Example
+        // Save data to Session Storage
+        sessionStorage.setItem('token', 'abc123');
+
+        // Retrieve data from Session Storage
+        const sessionToken = sessionStorage.getItem('token');
+        console.log('Session Storage - Token:', sessionToken);
+
+        // Cookies Example
+        // Set a cookie with an expiration date (7 days)
+        document.cookie = 'theme=dark; expires=' + new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString();
+
+        // Retrieve data from cookies
+        const cookies = document.cookie.split(';');
+        console.log('Cookies:', cookies);
+
+        // Function to get the value of a specific cookie
+        function getCookie(name) {
+            const cookieName = name + '=';
+            for (const cookie of cookies) {
+                let currentCookie = cookie.trim();
+                if (currentCookie.indexOf(cookieName) === 0) {
+                    return currentCookie.substring(cookieName.length, currentCookie.length);
+                }
+            }
+            return null;
+        }
+
+        // Get the value of the 'theme' cookie
+        const themeCookie = getCookie('theme');
+        console.log('Theme Cookie:', themeCookie);
+    </script>
+
+}

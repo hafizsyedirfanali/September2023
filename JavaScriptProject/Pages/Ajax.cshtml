@@ -1,0 +1,154 @@
+﻿@page
+@model JavaScriptProject.Pages.AjaxModel
+@{
+}
+<div>
+    <h1>Get JWT Token</h1>
+    <pre>
+        function fetchToken() {
+                                const password = 'Abcd@1234'; // This should be obtained from the user input
+
+                                fetch('https://localhost:7215/Home/GetToken', {
+                                    method: 'GET',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Password': password
+                                    }
+                                })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    // Handle the token response data
+                                    const token = data.token;
+                                    localStorage.setItem('jwtToken', token); // Store token in local storage
+                                    fetchData(); // Call fetchData after getting the token
+                                })
+                                .catch(error => {
+                                    console.error('Fetch Error:', error);
+                                    document.getElementById('result').innerText = 'Error fetching token';
+                                });
+                            }
+    </pre>
+    <button onclick="fetchToken()">Fetch Token</button>
+    <div id="token"></div>
+</div>
+
+
+<div>
+    <h1>Ajax and APIs:</h1>
+    <h2>
+        Making HTTP requests
+    </h2>
+    <pre>
+        function fetchData() {
+                            // Retrieve the JWT bearer token from wherever it's stored (e.g., localStorage)
+                            const token = localStorage.getItem('jwtToken');
+
+                            // Ensure that the token is available
+                            if (!token) {
+                                console.error('JWT token is missing');
+                                document.getElementById('result').innerText = 'JWT token is missing';
+                                return;
+                            }
+
+                            // Fetch data with the JWT bearer token included in the Authorization header
+                            fetch('https://localhost:7215/Student/GetStudentList', {
+                                headers: {
+                                    'Authorization': `Bearer ${token}`
+                                }
+                            })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                // Parse the response JSON
+                                return response.json();
+                            })
+                            .then(data => {
+                                // Handle the API response data
+                                document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+                            })
+                            .catch(error => {
+                                // Handle errors during the fetch operation
+                                console.error('Fetch Error:', error);
+                                document.getElementById('result').innerText = 'Error fetching data';
+                            });
+                        }
+
+    </pre>
+    <button onclick="fetchData()">Fetch Data</button>
+    <div id="result"></div>
+    
+</div>
+@section Scripts {
+    <script>
+        function fetchToken() {
+            const password = 'Abcd@1234'; // This should be obtained from the user input
+
+            fetch('https://localhost:7215/Home/GetToken', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Password': password
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle the token response data
+                    const token = data.token;
+                    localStorage.setItem('jwtToken', token); // Store token in local storage
+                    document.getElementById('token').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    console.error('Fetch Error:', error);
+                    document.getElementById('result').innerText = 'Error fetching token';
+                });
+        }
+
+
+        function fetchData() {
+            // Retrieve the JWT bearer token from wherever it's stored (e.g., localStorage)
+            const token = localStorage.getItem('jwtToken');
+
+            // Ensure that the token is available
+            if (!token) {
+                console.error('JWT token is missing');
+                document.getElementById('result').innerText = 'JWT token is missing';
+                return;
+            }
+
+            // Fetch data with the JWT bearer token included in the Authorization header
+            fetch('https://localhost:7215/Student/GetStudentList', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    // Parse the response JSON
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle the API response data
+                    document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    // Handle errors during the fetch operation
+                    console.error('Fetch Error:', error);
+                    document.getElementById('result').innerText = 'Error fetching data';
+                });
+        }
+
+    </script>
+}

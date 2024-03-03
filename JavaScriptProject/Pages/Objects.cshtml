@@ -1,0 +1,131 @@
+﻿@page
+@model JavaScriptProject.Pages.ObjectsModel
+@{
+}
+<div>
+    <h1>Objects and Arrays:</h1>
+    <h2>Creating and manipulating objects</h2>
+    <pre>
+        // Creating an object
+        let person = {
+            firstName: 'John',
+            lastName: 'Doe',
+            age: 30,
+            address: {
+                city: 'New York',
+                country: 'USA'
+            },
+            sayHello: function () {
+                console.log('Hello, my name is ' + this.firstName + ' ' + this.lastName);
+            }
+        };
+
+        // Accessing object properties
+        console.log('First Name:', person.firstName);
+        console.log('City:', person.address.city);
+
+        // Modifying object properties
+        person.age = 31;
+
+        // Calling a method on the object
+        person.sayHello();
+
+    </pre>
+    <h2>Arrays and array methods (map, filter, reduce)</h2>
+    <pre>
+        // Creating an array
+        let numbers = [1, 2, 3, 4, 5];
+
+        // Accessing array elements
+        console.log('Third Element:', numbers[2]);
+
+        // Modifying array elements
+        numbers[1] = 10;
+
+        // Adding elements to the end of an array
+        numbers.push(6);
+
+        // Using the map method to create a new array
+        let squaredNumbers = numbers.map(function (num) {
+            return num * num;
+        });
+
+        // Using the filter method to create a new array with even numbers
+        let evenNumbers = numbers.filter(function (num) {
+            return num % 2 === 0;
+        });
+
+        // Using the reduce method to calculate the sum of all elements
+        let sum = numbers.reduce(function (accumulator, currentValue) {
+            return accumulator + currentValue;
+        }, 0);
+
+        // Outputting the results
+        console.log('Squared Numbers:', squaredNumbers);
+        console.log('Even Numbers:', evenNumbers);
+        console.log('Sum:', sum);
+
+    </pre>
+</div>
+@section Scripts {
+    <script>
+        // Creating an object
+        let person = {
+            firstName: 'John',
+            lastName: 'Doe',
+            age: 30,
+            address: {
+                city: 'New York',
+                country: 'USA'
+            },
+            sayHello: function () {
+                console.log('Hello, my name is ' + this.firstName + ' ' + this.lastName);
+            }
+        };
+
+        // Accessing object properties
+        console.log('First Name:', person.firstName);
+        console.log('City:', person.address.city);
+
+        // Modifying object properties
+        person.age = 31;
+
+        // Calling a method on the object
+        person.sayHello();
+
+    </script>
+    <script>
+        // Creating an array
+        let numbers = [1, 2, 3, 4, 5];
+
+        // Accessing array elements
+        console.log('Third Element:', numbers[2]);
+
+        // Modifying array elements
+        numbers[1] = 10;
+
+        // Adding elements to the end of an array
+        numbers.push(6);
+
+        // Using the map method to create a new array
+        let squaredNumbers = numbers.map(function (num) {
+            return num * num;
+        });
+
+        // Using the filter method to create a new array with even numbers
+        let evenNumbers = numbers.filter(function (num) {
+            return num % 2 === 0;
+        });
+
+        // Using the reduce method to calculate the sum of all elements
+        let sum = numbers.reduce(function (accumulator, currentValue) {
+            return accumulator + currentValue;
+        }, 0);
+
+        // Outputting the results
+        console.log('Squared Numbers:', squaredNumbers);
+        console.log('Even Numbers:', evenNumbers);
+        console.log('Sum:', sum);
+
+    </script>
+}

@@ -1,0 +1,116 @@
+﻿@page
+@model JavaScriptProject.Pages.DataTypesModel
+@{
+}
+<div class="multiline">
+    <h2>Basic Datatypes</h2>
+    <pre>
+        // Strings
+        let greeting = 'Hello, ';
+        let name = 'John';
+
+        // Numbers
+        let age = 25;
+        let pi = 3.14;
+
+        // Booleans
+        let isStudent = true;
+        let hasJob = false;
+
+        // Concatenating strings
+        let message = greeting + name;
+
+        // Performing arithmetic operations
+        let sum = age + pi;
+        let multiplied = age * 2;
+
+        // Conditional statement with boolean
+        if (isStudent) {
+        console.log(name + ' is a student.');
+        } else {
+        console.log(name + ' is not a student.');
+        }
+
+    </pre>
+    <h2>Variables & Constants</h2>
+    <pre>
+        // Variables (can be reassigned)
+        let variableValue = 'This can change';
+        let numberVar = 42;
+
+        // Constants (cannot be reassigned)
+        const fixedValue = 'This stays the same';
+        const piValue = 3.14;
+
+        // Updating variable values
+        variableValue = 'Updated value';
+        numberVar = numberVar + 10;
+
+        // Constants cannot be reassigned (uncommenting the line below will result in an error)
+        // fixedValue = 'Trying to change this will cause an error';
+
+        // Outputting values to the console
+        console.log(variableValue);
+        console.log(numberVar);
+        console.log(fixedValue);
+
+    </pre>
+    
+</div>
+
+@section Scripts{
+    <script>
+        // Strings
+        let greeting = "Hello, ";
+        let name = 'John';
+
+        // Numbers
+        let age = 25;
+        let pi = 3.14;
+        let totalFees = 80000;
+        let feePaid = 40000;
+
+        // Booleans
+        let isStudent = true;
+        let hasJob = false;
+
+        // Concatenating strings : must have one operand as string
+        let message = greeting + name;
+
+        // Performing arithmetic operations
+        let sum = age + pi;
+        let multiplied = age * 2;
+        let feeBalance = totalFees - feePaid;
+
+        // Conditional statement with boolean
+        if (isStudent) {
+            console.log(name + ' is a student.');
+        } else {
+            console.log(name + ' is not a student.');
+        }
+        //it has switch, ternary same as c#
+
+        //Variables and Constants
+        // Variables (can be reassigned)
+        let variableValue = 'This can change';
+        let numberVar = 42;
+
+        // Constants (cannot be reassigned)
+        const fixedValue = 'This stays the same';
+        const piValue = 3.14;
+
+        // Updating variable values
+        variableValue = 'Updated value';
+        numberVar = numberVar + 10;
+
+        // Constants cannot be reassigned (uncommenting the line below will result in an error)
+        // fixedValue = 'Trying to change this will cause an error';
+
+        // Outputting values to the console
+        console.log(variableValue);
+        console.log(numberVar);
+        console.log(fixedValue);
+
+
+    </script>
+}

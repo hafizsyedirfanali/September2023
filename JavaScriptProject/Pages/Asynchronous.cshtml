@@ -1,0 +1,122 @@
+﻿@page
+@model JavaScriptProject.Pages.AsynchronousModel
+@{
+}
+<div>
+    <h1>DOM Manipulation:</h1>
+    <h2>
+        Callback functions
+    </h2>
+    <pre>
+        // Simple asynchronous function with a callback
+        function fetchData(callback) {
+            setTimeout(function () {
+                // Simulating data fetching
+                let data = 'Async data';
+                callback(data);
+            }, 1000);
+        }
+
+        // Using the callback
+        fetchData(function (result) {
+            console.log('Data received:', result);
+        });
+
+    </pre>
+    <h2>
+        Promises
+    </h2>
+    <pre>
+        A Promise in JavaScript is an object that represents the eventual completion or failure of an asynchronous operation and its resulting value. Promises provide a way to handle asynchronous operations in a more structured and readable manner compared to using callback functions.
+
+    <strong>A Promise can be in one of three states:</strong>
+        Pending: The initial state; the promise is neither fulfilled nor rejected.
+        Fulfilled: The operation completed successfully, and the promise has a resulting value.
+        Rejected: The operation failed, and the promise has a reason for the failure.
+    </pre>
+    <h2>
+        Async/await syntax
+    </h2>
+    <pre>
+        // Asynchronous function
+        async function fetchData() {
+            return 'Async data';
+        }
+
+        // Using async/await to handle the asynchronous function
+        async function fetchDataAndPrint() {
+            try {
+                // Wait for the asynchronous function to complete
+                let result = await fetchData();
+                console.log('Data received:', result);
+            } catch (error) {
+                // Handle errors
+                console.error('Error:', error);
+            }
+        }
+
+        // Calling the async function
+        fetchDataAndPrint();
+
+    </pre>
+</div>
+@section Scripts {
+    <script>
+        // Simple asynchronous function with a callback
+        function fetchData(callback) {
+            setTimeout(function () {
+                // Simulating data fetching
+                let data = 'Async data';
+                callback(data);
+            }, 1000);
+        }
+
+        // Using the callback
+        fetchData(function (result) {
+            console.log('Data received:', result);
+        });
+
+    </script>
+    <script>
+        //Creating a Promise:
+        const myPromise = new Promise(function (resolve, reject) {
+            // Asynchronous operation
+            // If successful, call resolve with the result
+            // If there's an error, call reject with the reason
+        });
+
+        //Using a Promise:
+        myPromise
+            .then(function (result) {
+                // Handle successful result
+                console.log('Fulfilled:', result);
+            })
+            .catch(function (error) {
+                // Handle error
+                console.error('Rejected:', error);
+            });
+
+
+    </script>
+    <script>
+        // Asynchronous function
+        async function fetchData() {
+            return 'Async data';
+        }
+
+        // Using async/await to handle the asynchronous function
+        async function fetchDataAndPrint() {
+            try {
+                // Wait for the asynchronous function to complete
+                let result = await fetchData();
+                console.log('Data received:', result);
+            } catch (error) {
+                // Handle errors
+                console.error('Error:', error);
+            }
+        }
+
+        // Calling the async function
+        fetchDataAndPrint();
+    </script>
+}

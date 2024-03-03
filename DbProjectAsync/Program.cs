@@ -49,6 +49,16 @@ builder.Services.AddTransient<IStudent, StudentRepository>();
 builder.Services.Configure<ComplexObjectClass>(config.GetSection("ComplexObject"));
 builder.Services.AddScoped<IJWTServices, JWTRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -65,7 +75,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseCors();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

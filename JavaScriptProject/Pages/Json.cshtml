@@ -1,0 +1,77 @@
+﻿@page
+@model JavaScriptProject.Pages.JsonModel
+@{
+}
+<div>
+    <h1>Json:</h1>
+    <h2>
+        Working with JSON data
+    </h2>
+    <pre>
+        Working with JSON data in JavaScript typically involves two main operations: parsing and stringifying. 
+    </pre>
+    <h2>
+        Parsing and stringify
+    </h2>
+    <pre>
+        // Sample JSON data (string)
+        const jsonString = '{"name": "abid", "age": 25, "city": "Nagpur"}';
+
+        // Parsing JSON string to JavaScript object
+        const parsedData = JSON.parse(jsonString);
+
+        // Accessing properties of the parsed object
+        console.log('Name:', parsedData.name);
+        console.log('Age:', parsedData.age);
+        console.log('City:', parsedData.city);
+
+        // Creating a JavaScript object
+        const person = {
+            name: 'Arif',
+            age: 30,
+            city: 'Mumbai'
+        };
+
+        // Stringifying JavaScript object to JSON string
+        const jsonStringFromObject = JSON.stringify(person);
+
+        // Displaying the JSON string
+        console.log('JSON String from Object:', jsonStringFromObject);
+    </pre>
+    <pre>
+        JSON.parse: This function is used to parse a JSON string and convert it into a JavaScript object. 
+        The resulting object can be accessed like any other JavaScript object.
+
+        JSON.stringify: This function is used to convert a JavaScript object into a JSON string. 
+        The resulting string can be transmitted over the network, stored in a file, 
+        or used wherever a string representation of the object is needed.
+    </pre>
+</div>
+@section Scripts {
+
+    <script>
+        // Sample JSON data (string)
+        const jsonString = '{"name": "abid", "age": 25, "city": "Nagpur"}';
+
+        // Parsing JSON string to JavaScript object
+        const parsedData = JSON.parse(jsonString);
+
+        // Accessing properties of the parsed object
+        console.log('Name:', parsedData.name);
+        console.log('Age:', parsedData.age);
+        console.log('City:', parsedData.city);
+
+        // Creating a JavaScript object
+        const person = {
+            name: 'Arif',
+            age: 30,
+            city: 'Mumbai'
+        };
+
+        // Stringifying JavaScript object to JSON string
+        const jsonStringFromObject = JSON.stringify(person);
+
+        // Displaying the JSON string
+        console.log('JSON String from Object:', jsonStringFromObject);
+    </script>
+}

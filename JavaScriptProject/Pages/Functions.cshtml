@@ -1,0 +1,107 @@
+﻿@page
+@model JavaScriptProject.Pages.FunctionsModel
+@{
+}
+
+<div>
+    <h1>Functions</h1>
+    <h2>Function declaration and expression</h2>
+    <pre>
+        // Function declaration
+        function greet(name) {
+            console.log('Hello, ' + name + '!');
+        }
+
+        // Call the function
+        greet('John');
+
+    </pre>
+    <pre>
+        // Function expression
+        let multiply = function (a, b) {
+            return a * b;
+        };
+
+        // Call the function
+        let result = multiply(5, 3);
+        console.log('Multiplication Result:', result);
+
+    </pre>
+    <h2>Parameters and return values</h2>
+    <pre>
+        // Function with parameters and return value
+        function calculateArea(radius) {
+            const area = Math.PI * radius * radius;
+            return area;
+        }
+
+        // Call the function
+        let circleArea = calculateArea(5);
+        console.log('Circle Area:', circleArea);
+
+    </pre>
+    <h2>Arrow functions</h2>
+    <pre>
+        // Arrow function without parameters
+        const sayHello = () => {
+            console.log('Hello from the arrow function!');
+        };
+
+        // Arrow function with parameters and implicit return
+        const addNumbers = (x, y) => x + y;
+
+        // Call the arrow functions
+        sayHello();
+        let sum = addNumbers(10, 20);
+        console.log('Sum:', sum);
+
+    </pre>
+</div>
+@section Scripts{
+    <script>
+        // Function declaration
+        function greet(name) {
+            console.log('Hello, ' + name + '!');
+        }
+
+        // Call the function
+        greet('John');
+
+        // Function expression
+        let multiply = function (a, b) {
+            return a * b;
+        };
+
+        // Call the function
+        let result = multiply(5, 3);
+        console.log('Multiplication Result:', result);
+
+    </script>
+    <script>
+        // Function with parameters and return value
+        function calculateArea(radius) {
+            const area = Math.PI * radius * radius;
+            return area;
+        }
+
+        // Call the function
+        let circleArea = calculateArea(5);
+        console.log('Circle Area:', circleArea);
+
+    </script>
+    <script>
+        // Arrow function without parameters
+        const sayHello = () => {
+            console.log('Hello from the arrow function!');
+        };
+
+        // Arrow function with parameters and implicit return
+        const addNumbers = (x, y) => x + y;
+
+        // Call the arrow functions
+        sayHello();
+        let sum = addNumbers(10, 20);
+        console.log('Sum:', sum);
+
+    </script>
+}

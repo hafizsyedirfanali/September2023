@@ -131,6 +131,11 @@ namespace DbProjectAsync.Repositories
                     await dbContext.SaveChangesAsync();
                     responseModel.IsSuccess = true;
                 }
+                else
+                {
+                    responseModel.ErrorCode = 1007;
+                    responseModel.ErrorMessage = $"Student with Id {studentId} not found";
+                }
             }
             catch (Exception ex)
             {

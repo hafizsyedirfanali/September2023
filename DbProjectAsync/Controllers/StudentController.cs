@@ -52,6 +52,26 @@ namespace DbProjectAsync.Controllers
             }
             return BadRequest(new {ErrorMessage = errors, ErrorCode = 2001});
         }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> UpdateStudent([FromBody] StudentViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await studentServices.UpdateStudentAsync(model).ConfigureAwait(false);
+                if (!result.IsSuccess)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, result);
+                }
+                return Ok(result);
+            }
+            string errors = string.Empty;
+            foreach (var item in ModelState.Values.SelectMany(s => s.Errors).ToList())
+            {
+                errors += item.ErrorMessage + ";";
+            }
+            return BadRequest(new { ErrorMessage = errors, ErrorCode = 2001 });
+        }
 
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         [HttpGet]
@@ -118,6 +138,18 @@ namespace DbProjectAsync.Controllers
             return View(model);
         }
         [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> GetStudentById([FromRoute] Guid id)
+        {
+            var result = await studentServices.GetStudentByIdAsync(id).ConfigureAwait(false);
+            if (!result.IsSuccess)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, result);
+            }
+            return Ok(result);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Edit([FromRoute]Guid id)//in get action, data comes from query (route)
         {
             //pass this id to GetStudentById, and pass the result to view
@@ -128,6 +160,10 @@ namespace DbProjectAsync.Controllers
             }
             return View(result.Result);
         }
+
+        
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([FromForm] StudentViewModel model)
@@ -157,6 +193,18 @@ namespace DbProjectAsync.Controllers
                 return View("Error", new ErrorViewModel(result.ErrorCode, result.ErrorMessage));
             }
             return RedirectToAction(nameof(Index));//single line instruction does not require { }
+        }
+        [HttpDelete]
+        [Authorize]
+        public async Task<IActionResult> DeleteRecord([FromQuery] Guid id)
+        {
+            var result = await studentServices.DeleteStudentAsync(id).ConfigureAwait(false);
+            if (!result.IsSuccess)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,result);
+            }
+            return StatusCode(StatusCodes.Status200OK, result);
+            //return Ok(result);
         }
     }
 }

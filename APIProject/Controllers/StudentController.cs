@@ -60,5 +60,68 @@ namespace APIProject.Controllers
             return BadRequest(new { ErrorMessage = errors });
         }
 
+        [HttpPost]
+        [Route("UpdateRecord")]
+        public async Task<IActionResult> UpdateRecord([FromForm] StudentModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await student.UpdateStudentAsync(model);
+                if (result.IsSuccess)
+                {
+                    return Ok(result);
+                }
+                return StatusCode(StatusCodes.Status500InternalServerError, result);
+            }
+            string errors = string.Empty;
+            foreach (var item in ModelState.Values.SelectMany(s => s.Errors).ToList())
+            {
+                errors += item.ErrorMessage + "; ";
+            }
+            return BadRequest(new { ErrorMessage = errors });
+        }
+
+        [HttpDelete]
+        [Route("DeleteRecord")]
+        public async Task<IActionResult> DeleteRecord([FromQuery] Guid id)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await student.DeleteStudentAsync(id);
+                if (result.IsSuccess)
+                {
+                    return Ok(result);
+                }
+                return StatusCode(StatusCodes.Status500InternalServerError, result);
+            }
+            string errors = string.Empty;
+            foreach (var item in ModelState.Values.SelectMany(s => s.Errors).ToList())
+            {
+                errors += item.ErrorMessage + "; ";
+            }
+            return BadRequest(new { ErrorMessage = errors });
+        }
+
+        [HttpGet]
+        [Route("GetStudentById/{id}")]
+        public async Task<IActionResult> GetStudentById([FromRoute] Guid id)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await student.GetStudentByIdAsync(id);
+                if (result.IsSuccess)
+                {
+                    return Ok(result);
+                }
+                return StatusCode(StatusCodes.Status500InternalServerError, result);
+            }
+            string errors = string.Empty;
+            foreach (var item in ModelState.Values.SelectMany(s => s.Errors).ToList())
+            {
+                errors += item.ErrorMessage + "; ";
+            }
+            return BadRequest(new { ErrorMessage = errors });
+        }
+
     }
 }

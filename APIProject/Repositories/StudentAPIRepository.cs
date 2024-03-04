@@ -2,7 +2,6 @@
 using APIProject.Models;
 using JWTProject.Services;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -41,7 +40,35 @@ namespace APIProject.Repositories
             return result.token;
         }
 
+        public async Task<ResponseModel> UpdateStudentAsync(StudentModel model)
+        {
+            var responseModel = new ResponseModel();
+            try
+            {
+                var tokenResponse = await jWTServices.ReadToken();
+                if (!tokenResponse.IsSuccess) throw new Exception($"Error code: {tokenResponse.ErrorCode}, Error message : {tokenResponse.ErrorMessage}");
+                var token = tokenResponse.Result;
+                using HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                var data = JsonConvert.SerializeObject(model);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = await client.PostAsync("/Student/UpdateStudent", content);
+                // response.EnsureSuccessStatusCode();
+                var responseString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<ResponseModel>(responseString);
+                responseModel = result;
+            }
+            catch (Exception ex)
+            {
+                responseModel!.ErrorCode = 8001;
+                responseModel.ErrorMessage = ex.Message;
+            }
 
+            return responseModel!;
+        }
         public async Task<ResponseModel<Guid>> AddStudentAsync(StudentModel model)
         {
             var responseModel = new ResponseModel<Guid>();
@@ -72,9 +99,38 @@ namespace APIProject.Repositories
             return responseModel!;
         }
 
-        public Task<ResponseModel> DeleteStudentAsync(Guid studentId)
+        public async Task<ResponseModel> DeleteStudentAsync(Guid studentId)
         {
-            throw new NotImplementedException();
+            var responseModel = new ResponseModel();
+            try
+            {
+                var tokenResponse = await jWTServices.ReadToken();
+                if (!tokenResponse.IsSuccess) throw new Exception($"Error code: {tokenResponse.ErrorCode}, Error message : {tokenResponse.ErrorMessage}");
+                var token = tokenResponse.Result;
+                using HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                
+                //var data = JsonConvert.SerializeObject(model);
+                //var content = new StringContent(data, Encoding.UTF8, "application/json");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                //client.DefaultRequestHeaders.Accept.Clear();
+                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //query parameter is passed after ?
+                //route parameters are passed after /
+                var response = await client.DeleteAsync($"/Student/DeleteRecord?id={studentId}");  //if query parameter name is 'studentId'
+                // var response = await client.DeleteAsync($"/Student/DeleteRecord/{studentId}"); //if route parameter name is 'id'
+                //response.EnsureSuccessStatusCode();
+                var responseString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<ResponseModel>(responseString);
+                responseModel = result;
+            }
+            catch (Exception ex)
+            {
+                responseModel!.ErrorCode = 8001;
+                responseModel.ErrorMessage = ex.Message;
+            }
+
+            return responseModel!;
         }
 
         public Task<ResponseModel<List<string>>> GetRegionsAsync()
@@ -82,9 +138,37 @@ namespace APIProject.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<ResponseModel<StudentModel>> GetStudentByIdAsync(Guid studentId)
+        public async Task<ResponseModel<StudentModel>> GetStudentByIdAsync(Guid studentId)
         {
-            throw new NotImplementedException();
+            var responseModel = new ResponseModel<StudentModel>();
+            try
+            {
+                var tokenResponse = await jWTServices.ReadToken();
+                if (!tokenResponse.IsSuccess) throw new Exception($"Error code: {tokenResponse.ErrorCode}, Error message : {tokenResponse.ErrorMessage}");
+                var token = tokenResponse.Result;
+                using HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+
+                //var data = JsonConvert.SerializeObject(model);
+                //var content = new StringContent(data, Encoding.UTF8, "application/json");
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                //client.DefaultRequestHeaders.Accept.Clear();
+                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //query parameter is passed after ?
+                //route parameters are passed after /
+                var response = await client.GetAsync($"/Student/GetStudentById/{studentId}");
+                //response.EnsureSuccessStatusCode();
+                var responseString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<ResponseModel<StudentModel>>(responseString);
+                responseModel = result;
+            }
+            catch (Exception ex)
+            {
+                responseModel!.ErrorCode = 8001;
+                responseModel.ErrorMessage = ex.Message;
+            }
+
+            return responseModel!;
         }
 
         public async Task<ResponseModel<List<StudentModel>>> GetStudentListAsync()
@@ -121,9 +205,6 @@ namespace APIProject.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<ResponseModel> UpdateStudentAsync(StudentModel model)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

@@ -2,19 +2,20 @@
 @{
 }
 <form method="post" enctype="multipart/form-data">
-    <table>
+    <table class="table">
         <tr>
-            <td>Input Number<label asp-for="Age"></label></td>
+            <td>  <label asp-for="Age">Input Number</label></td>
             <td>
-                <input type="number" asp-for="Age" />
+                <input asp-for="Age" />
             </td>
         </tr>
         <tr>
             <td>Select</td>
             <td>
                 <select asp-for="Gender">
-                    <option>Male</option>
-                    <option>Female</option>
+                    <option value=""></option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
                 </select>
             </td>
         </tr>
@@ -33,13 +34,13 @@
         <tr>
             <td>File Upload</td>
             <td>
-                <input type="file" asp-for="File" />
+                <input asp-for="File" />
             </td>
         </tr>
         <tr>
             <td>Files Upload</td>
             <td>
-                <input type="file" multiple asp-for="Files" />
+                <input asp-for="Files" />
             </td>
         </tr>
         <tr>
@@ -64,7 +65,7 @@
             <td>Check box</td>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" asp-for="IsEligible">
+                    <input class="form-check-input" asp-for="IsEligible">
                     <label class="form-check-label" asp-for="IsEligible"></label>
                 </div>
             </td>
@@ -72,7 +73,7 @@
         <tr>
             <td>Textarea</td>
             <td>
-                <textarea rows="4" asp-for="Address"></textarea>
+                <textarea rows="10" class="form-control" asp-for="Address"></textarea>
             </td>
         </tr>
     </table>

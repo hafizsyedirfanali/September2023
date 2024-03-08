@@ -27,6 +27,7 @@
     <Folder Include="Areas\Inventory\Controllers\" />
     <Folder Include="Areas\Technical\Controllers\" />
     <Folder Include="wwwroot\Files\" />
+    <Folder Include="wwwroot\Files\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RandomNumber\RandomNumber.csproj" />

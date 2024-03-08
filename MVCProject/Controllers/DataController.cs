@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MVCProject.Controllers
 {
@@ -12,7 +13,11 @@ namespace MVCProject.Controllers
         /// Once data is red from the variable/key, it is marked for deletion, which is then deleted by GC.
         /// </summary>
         /// <returns></returns>
-
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public DataController(IWebHostEnvironment webHostEnvironment)
+        {
+            _webHostEnvironment = webHostEnvironment;
+        }
         [HttpGet]
         public IActionResult HTMLTags()
         {
@@ -22,6 +27,34 @@ namespace MVCProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult HTMLTags(HTMLTagsViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                // Save single file
+                if (model.File != null)
+                {
+                    string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "Files", model.File.FileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        model.File.CopyTo(fileStream);
+                    }
+                }
+
+                // Save multiple files
+                if (model.Files != null && model.Files.Count > 0)
+                {
+                    foreach (var file in model.Files)
+                    {
+                        string filePath = Path.Combine(_webHostEnvironment.WebRootPath, "Files", file.FileName);
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            file.CopyTo(fileStream);
+                        }
+                    }
+                }
+
+                // Other processing or redirection after saving files
+            }
+
             return View(model);
         }
 

@@ -83,6 +83,14 @@
             // Asynchronous operation
             // If successful, call resolve with the result
             // If there's an error, call reject with the reason
+            const a = 10;
+            try {
+                a = 20;
+                resolve()
+            }
+            catch{
+                reject()
+            }
         });
 
         //Using a Promise:

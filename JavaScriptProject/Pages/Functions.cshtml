@@ -104,4 +104,18 @@
         console.log('Sum:', sum);
 
     </script>
+    <script>
+        function greet(displayMethod) {
+            displayMethod();
+        }
+
+
+        greet(function () {
+            console.log("Hello from call back function")
+        })
+
+        greet(function(){
+            alert("Hello from call back function")
+        })
+    </script>
 }

@@ -2,7 +2,7 @@
 using CSharpBasics;
 using OOPProject;
 
-CH09_GUID obj = new CH09_GUID();
+CH07_Arrays obj = new ();
 obj.Test();
 
 //CH07_Arrays.FourDimensionArray obj = new ();

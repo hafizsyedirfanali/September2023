@@ -6,11 +6,13 @@ public class CH07_Arrays
 {
     public void Test()
     {
-
+        TestIntegerArray();
     }
     public void TestIntegerArray()
     {
         int[] rollNumbers = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        int[] array = { 1, 2, 3 };
+        //array[3] = 2; //error
     }
     public void TestStringArray()
     {
